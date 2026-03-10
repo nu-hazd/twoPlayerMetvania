@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerControls" format=3 uid="uid://cbfh4cgahf6cj"]
+
+[ext_resource type="Script" uid="uid://bqrcr15qrwwoq" path="res://Resources/playerControl.gd" id="1_avasd"]
+
+[resource]
+script = ExtResource("1_avasd")
+playerIndex = 1
+playerInputArray = Array[String](["p2_l", "p2_r", "p2_d", "p2_jump", "p2_dash"])
+metadata/_custom_type_script = "uid://bqrcr15qrwwoq"

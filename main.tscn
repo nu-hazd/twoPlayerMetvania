@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://2mni12wtpd5n"]
+
+[ext_resource type="Script" uid="uid://cjf7k1ptgjsf6" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dgibmfdnt2rlk" path="res://Scenes/room.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bstnq86k4h03f" path="res://statsPanel.tscn" id="2_h2yge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h05gq"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="main" type="Node" unique_id=118302687]
+script = ExtResource("1_0xm2m")
+
+[node name="screensContainer" type="VBoxContainer" parent="." unique_id=1604967332]
+custom_minimum_size = Vector2(1024, 768)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="playerOneScreen" type="HBoxContainer" parent="screensContainer" unique_id=584406545]
+custom_minimum_size = Vector2(1024, 376)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="playerOneStatPanel" parent="screensContainer/playerOneScreen" unique_id=546236056 instance=ExtResource("2_h2yge")]
+layout_mode = 2
+
+[node name="playerOneDisplay" type="SubViewportContainer" parent="screensContainer/playerOneScreen" unique_id=771745802]
+custom_minimum_size = Vector2(768, 376)
+layout_mode = 2
+
+[node name="subviewport" type="SubViewport" parent="screensContainer/playerOneScreen/playerOneDisplay" unique_id=1764515422]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(768, 380)
+render_target_update_mode = 4
+
+[node name="p1Cam" type="Camera2D" parent="screensContainer/playerOneScreen/playerOneDisplay/subviewport" unique_id=1883138400]
+zoom = Vector2(2, 2)
+
+[node name="room" parent="screensContainer/playerOneScreen/playerOneDisplay/subviewport" unique_id=853047949 instance=ExtResource("1_ig7tw")]
+position = Vector2(336, 136)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="screensContainer/playerOneScreen/playerOneDisplay/subviewport" unique_id=943636782]
+
+[node name="divisorLine" type="ColorRect" parent="screensContainer" unique_id=1057357554]
+custom_minimum_size = Vector2(1024, 8)
+layout_mode = 2
+
+[node name="playerTwoScreen" type="HBoxContainer" parent="screensContainer" unique_id=413254192]
+custom_minimum_size = Vector2(0, 376)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="playerTwoDisplay" type="SubViewportContainer" parent="screensContainer/playerTwoScreen" unique_id=1529514276]
+custom_minimum_size = Vector2(768, 376)
+layout_mode = 2
+
+[node name="subviewport" type="SubViewport" parent="screensContainer/playerTwoScreen/playerTwoDisplay" unique_id=711753704]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(768, 380)
+render_target_update_mode = 4
+
+[node name="p2Cam" type="Camera2D" parent="screensContainer/playerTwoScreen/playerTwoDisplay/subviewport" unique_id=1213646980]
+zoom = Vector2(2, 2)
+
+[node name="playerTwoStatPanel" parent="screensContainer/playerTwoScreen" unique_id=1495723937 instance=ExtResource("2_h2yge")]
+layout_mode = 2
+
+[node name="borders" type="Panel" parent="." unique_id=80229243]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h05gq")
