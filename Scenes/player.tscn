@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://buiw6g5hyi6a"]
 
 [ext_resource type="Script" uid="uid://dc8xvvii0tt6r" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Curve" uid="uid://cu6nh7con8fx3" path="res://Resources/ScalingCurves/healthScaling.tres" id="2_3smsa"]
 [ext_resource type="Resource" uid="uid://bs5wanbtc20m1" path="res://Resources/playerOne.tres" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://g6wuialtxgcg" path="res://Assets/Entities/Player/red.png" id="2_cvnsp"]
+[ext_resource type="Curve" uid="uid://bevnas8ol22tv" path="res://Resources/ScalingCurves/staminaMaxScaling.tres" id="3_7dp3o"]
+[ext_resource type="Curve" uid="uid://nqbcu23t5hoq" path="res://Resources/ScalingCurves/staminaRegenScaling.tres" id="4_h4iuc"]
 [ext_resource type="Script" uid="uid://5vmcjecrsuna" path="res://Scripts/stateMachine.gd" id="4_vgqql"]
+[ext_resource type="Curve" uid="uid://brodjqy8aescu" path="res://Resources/ScalingCurves/groundSpeedScaling.tres" id="5_fd4e3"]
 [ext_resource type="Script" uid="uid://8tk0fx7psyj2" path="res://Scripts/PlayerStates/ground.gd" id="5_fkybt"]
+[ext_resource type="Curve" uid="uid://bwupyj83su" path="res://Resources/ScalingCurves/airSpeedScaling.tres" id="6_qqcod"]
 [ext_resource type="Script" uid="uid://iffrv8vq8gal" path="res://Scripts/PlayerStates/air.gd" id="6_x3wgy"]
+[ext_resource type="Curve" uid="uid://cyek5oa3ofrya" path="res://Resources/ScalingCurves/fastFallScaling.tres" id="7_igrcy"]
+[ext_resource type="Curve" uid="uid://buo3rdnk7j12n" path="res://Resources/ScalingCurves/jumpPowerScaling.tres" id="8_fs7ks"]
+[ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/ScalingCurves/dashCooldownScaling.tres" id="9_l6n3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(32, 32)
@@ -366,6 +374,7 @@ transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransiti
 [node name="Player" type="CharacterBody2D" unique_id=1706995446]
 collision_mask = 16
 script = ExtResource("1_v0iea")
+scalingCurves = Array[Curve]([ExtResource("2_3smsa"), ExtResource("3_7dp3o"), ExtResource("4_h4iuc"), ExtResource("5_fd4e3"), ExtResource("6_qqcod"), ExtResource("7_igrcy"), ExtResource("8_fs7ks"), ExtResource("9_l6n3p")])
 playerControls = ExtResource("2_6t5aa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2041854968]

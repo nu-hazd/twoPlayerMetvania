@@ -11,7 +11,31 @@ border_color = Color(1, 1, 1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_nnu00"]
 font = ExtResource("1_khnck")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7460"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khnck"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkmkp"]
+bg_color = Color(1, 0, 0.16078432, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpykh"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
@@ -19,35 +43,160 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkmkp"]
-bg_color = Color(1, 0, 0.16078432, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7460"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
-[node name="statsPanel" type="Panel" unique_id=546236056]
-custom_minimum_size = Vector2(256, 380)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnu00"]
+bg_color = Color(0.22837025, 0.5477043, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6167"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="statsPanel (panel)" type="Panel" unique_id=546236056]
+custom_minimum_size = Vector2(128, 192)
+anchors_preset = -1
+anchor_right = 0.125
+anchor_bottom = 0.25
+offset_right = -128.0
+offset_bottom = -192.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
 
-[node name="info" type="VBoxContainer" parent="." unique_id=1756542848]
+[node name="name (label)" type="Label" parent="." unique_id=980023541]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="name" type="Label" parent="info" unique_id=980023541]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
+anchor_top = 0.062000003
+anchor_right = 0.897
+anchor_bottom = 0.22900002
+offset_top = 0.0959959
+offset_right = -0.01599884
+offset_bottom = 0.031993866
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.1
 text = "Rogue"
 label_settings = SubResource("LabelSettings_nnu00")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="healthBar" type="ProgressBar" parent="info" unique_id=1533053288]
+[node name="healthBar (progress)" type="ProgressBar" parent="." unique_id=1533053288]
 custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.19800001
+anchor_right = 0.648
+anchor_bottom = 0.27100003
+offset_left = 0.063999176
+offset_top = -0.016002655
+offset_right = 0.055999756
+offset_bottom = 1.9679947
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.15
+theme_override_styles/background = SubResource("StyleBoxFlat_khnck")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kkmkp")
 value = 24.32
 show_percentage = false
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1468035602]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.102000006
+anchor_top = 0.35900003
+anchor_right = 0.484375
+anchor_bottom = 0.59400004
+offset_left = -0.05600071
+offset_top = 0.07199097
+offset_bottom = -0.04800415
+size_flags_horizontal = 3
+
+[node name="weapon0 (panel" type="Panel" parent="AspectRatioContainer" unique_id=435312064]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpykh")
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="." unique_id=1941406361]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.35900003
+anchor_right = 0.8828125
+anchor_bottom = 0.59400004
+offset_top = 0.07199097
+offset_bottom = -0.04798889
+size_flags_horizontal = 3
+
+[node name="weapon0 (panel" type="Panel" parent="AspectRatioContainer3" unique_id=1498250685]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpykh")
+
+[node name="staminaBar (progress" type="ProgressBar" parent="." unique_id=1207751192]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2418125
+anchor_top = 0.29200003
+anchor_right = 0.6950625
+anchor_bottom = 0.333
+offset_left = 0.047999382
+offset_top = -0.06400299
+offset_right = 0.03199768
+offset_bottom = 0.063999176
+size_flags_stretch_ratio = 0.3
+theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nnu00")
+value = 24.32
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="playerInfo" type="RichTextLabel" parent="." unique_id=150565603]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23462501
+anchor_top = 0.63500005
+anchor_right = 0.73475003
+anchor_bottom = 0.9687917
+offset_left = -0.03200054
+offset_top = 0.07998657
+offset_right = -0.04800415
+offset_bottom = -0.008010864
+pivot_offset = Vector2(51, 32)
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/line_separation = 4
+theme_override_fonts/normal_font = ExtResource("1_khnck")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_m6167")
+bbcode_enabled = true
+text = "[color=yellow]$404[/color]
+[color=Red]VIT1[/color]
+[color=Blue]DEX1[/color]
+[color= Green]POW1[/color]"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

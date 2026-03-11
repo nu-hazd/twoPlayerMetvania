@@ -14,9 +14,9 @@ tile_set = ExtResource("1_ig7tw")
 
 [node name="playerOne" parent="." unique_id=1706995446 instance=ExtResource("2_0xm2m")]
 position = Vector2(-120, -24)
-dexterity = 10
 
 [node name="playerTwo" parent="." unique_id=2039806777 instance=ExtResource("2_0xm2m")]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(0, -24)
 playerControls = ExtResource("3_fr46g")
+baseStats = Array[int]([0, 0, 0, 1, 75, 1, 10, 5, 100, 100, 90, 300, -200, 250, 0, 0, 0])

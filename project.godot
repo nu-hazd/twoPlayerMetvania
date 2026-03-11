@@ -13,6 +13,7 @@ config_version=5
 config/name="twoPlayerRogueLite"
 run/main_scene="uid://2mni12wtpd5n"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=60
 config/icon="res://Assets/Misc/icon.svg"
 
 [display]
