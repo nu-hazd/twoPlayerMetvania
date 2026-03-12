@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bstnq86k4h03f"]
 
+[ext_resource type="Script" uid="uid://bhf0myivce3ir" path="res://Scripts/UI/statPanel.gd" id="1_c7460"]
 [ext_resource type="FontFile" uid="uid://df1d4wy4dh705" path="res://Assets/Misc/PixelatedEleganceRegular-ovawB.ttf" id="1_khnck"]
+[ext_resource type="Texture2D" uid="uid://bhgnjrlqkl45c" path="res://Assets/Misc/icon.svg" id="2_nnu00"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 bg_color = Color(0, 0, 0, 1)
@@ -8,195 +10,206 @@ border_width_left = 4
 border_width_right = 4
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_nnu00"]
+[sub_resource type="LabelSettings" id="LabelSettings_khnck"]
 font = ExtResource("1_khnck")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khnck"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7460"]
+bg_color = Color(1, 0.34901962, 0.19607843, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnu00"]
+bg_color = Color(1, 0.33711678, 0.30675885, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkmkp"]
-bg_color = Color(1, 0, 0.16078432, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-corner_detail = 1
+bg_color = Color(0.1624896, 0.72179097, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpykh"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7460"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnu00"]
-bg_color = Color(0.22837025, 0.5477043, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6167"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 1)
 
-[node name="statsPanel (panel)" type="Panel" unique_id=546236056]
-custom_minimum_size = Vector2(128, 192)
+[node name="statsPanel" type="Panel" unique_id=546236056]
+custom_minimum_size = Vector2(256, 380)
 anchors_preset = -1
 anchor_right = 0.125
 anchor_bottom = 0.25
 offset_right = -128.0
 offset_bottom = -192.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
+script = ExtResource("1_c7460")
 
-[node name="name (label)" type="Label" parent="." unique_id=980023541]
-custom_minimum_size = Vector2(0, 32)
+[node name="edge" type="MarginContainer" parent="." unique_id=1563998250]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.062000003
-anchor_right = 0.897
-anchor_bottom = 0.22900002
-offset_top = 0.0959959
-offset_right = -0.01599884
-offset_bottom = 0.031993866
-size_flags_vertical = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="informationListings" type="VBoxContainer" parent="edge" unique_id=1077854798]
+layout_mode = 2
+
+[node name="className" type="Label" parent="edge/informationListings" unique_id=950894657]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_vertical = 6
 size_flags_stretch_ratio = 0.1
 text = "Rogue"
-label_settings = SubResource("LabelSettings_nnu00")
+label_settings = SubResource("LabelSettings_khnck")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="healthBar (progress)" type="ProgressBar" parent="." unique_id=1533053288]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.312
-anchor_top = 0.19800001
-anchor_right = 0.648
-anchor_bottom = 0.27100003
-offset_left = 0.063999176
-offset_top = -0.016002655
-offset_right = 0.055999756
-offset_bottom = 1.9679947
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.15
-theme_override_styles/background = SubResource("StyleBoxFlat_khnck")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kkmkp")
-value = 24.32
-show_percentage = false
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1468035602]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.102000006
-anchor_top = 0.35900003
-anchor_right = 0.484375
-anchor_bottom = 0.59400004
-offset_left = -0.05600071
-offset_top = 0.07199097
-offset_bottom = -0.04800415
-size_flags_horizontal = 3
-
-[node name="weapon0 (panel" type="Panel" parent="AspectRatioContainer" unique_id=435312064]
-custom_minimum_size = Vector2(32, 32)
+[node name="healthBar" type="ProgressBar" parent="edge/informationListings" unique_id=1718946895]
+custom_minimum_size = Vector2(32, 20)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bpykh")
-
-[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="." unique_id=1941406361]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.35900003
-anchor_right = 0.8828125
-anchor_bottom = 0.59400004
-offset_top = 0.07199097
-offset_bottom = -0.04798889
-size_flags_horizontal = 3
-
-[node name="weapon0 (panel" type="Panel" parent="AspectRatioContainer3" unique_id=1498250685]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bpykh")
-
-[node name="staminaBar (progress" type="ProgressBar" parent="." unique_id=1207751192]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2418125
-anchor_top = 0.29200003
-anchor_right = 0.6950625
-anchor_bottom = 0.333
-offset_left = 0.047999382
-offset_top = -0.06400299
-offset_right = 0.03199768
-offset_bottom = 0.063999176
-size_flags_stretch_ratio = 0.3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
 theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nnu00")
-value = 24.32
+value = 27.93
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
-[node name="playerInfo" type="RichTextLabel" parent="." unique_id=150565603]
+[node name="staminaBar" type="ProgressBar" parent="edge/informationListings" unique_id=822538130]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kkmkp")
+value = 27.93
+show_percentage = false
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="edge/informationListings" unique_id=1484695811]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+ratio = 4.0
+
+[node name="weapons" type="HBoxContainer" parent="edge/informationListings/AspectRatioContainer" unique_id=983287506]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="weapon0" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=877476952]
 custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_nnu00")
+expand_mode = 1
+
+[node name="cd" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weapon0" unique_id=1090706941]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.23462501
-anchor_top = 0.63500005
-anchor_right = 0.73475003
-anchor_bottom = 0.9687917
-offset_left = -0.03200054
-offset_top = 0.07998657
-offset_right = -0.04800415
-offset_bottom = -0.008010864
-pivot_offset = Vector2(51, 32)
+anchor_top = 0.84400004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0080013275
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bpykh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m6167")
+value = 24.09
+show_percentage = false
+
+[node name="weapon1" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=151556297]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_nnu00")
+expand_mode = 1
+
+[node name="cd" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weapon1" unique_id=503676231]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.84400004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0080013275
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bpykh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m6167")
+value = 24.09
+show_percentage = false
+
+[node name="margin" type="MarginContainer" parent="edge/informationListings" unique_id=813497277]
+layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme_override_constants/line_separation = 4
-theme_override_fonts/normal_font = ExtResource("1_khnck")
-theme_override_font_sizes/normal_font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_m6167")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="stats" type="VBoxContainer" parent="edge/informationListings/margin" unique_id=1606656653]
+custom_minimum_size = Vector2(32, 95)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="attributes" type="RichTextLabel" parent="edge/informationListings/margin/stats" unique_id=1657869985]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
 bbcode_enabled = true
-text = "[color=yellow]$404[/color]
-[color=Red]VIT1[/color]
-[color=Blue]DEX1[/color]
-[color= Green]POW1[/color]"
-scroll_active = false
+text = "[table=2]
+[cell][color=gold]Souls:[/color][/cell][cell][color=white]%s[/color][/cell]
+[cell][color=red]Vitality:[/color][/cell][cell][color=white]%s[/color][/cell]
+[cell][color=green]Agility:[/color][/cell][cell][color=white]%s[/color][/cell]
+[cell][color=blue]Technique:[/color][/cell][cell][color=white]%s[/color][/cell]
+[/table]"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="unlocks" type="HBoxContainer" parent="edge/informationListings/margin/stats" unique_id=1602119615]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+alignment = 1
+
+[node name="dash" type="Label" parent="edge/informationListings/margin/stats/unlocks" unique_id=77163749]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+theme_override_font_sizes/font_size = 8
+text = "DASH"
+horizontal_alignment = 1
+
+[node name="doubleJump" type="Label" parent="edge/informationListings/margin/stats/unlocks" unique_id=1323270394]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+theme_override_font_sizes/font_size = 8
+text = "DOUBLE JUMP"
+horizontal_alignment = 1
+
+[node name="wallJump" type="Label" parent="edge/informationListings/margin/stats/unlocks" unique_id=749726501]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+theme_override_font_sizes/font_size = 8
+text = "WALL JUMP"
+horizontal_alignment = 1

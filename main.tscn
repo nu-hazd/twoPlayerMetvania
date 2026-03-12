@@ -31,11 +31,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_constants/separation = 0
 
-[node name="playerOneStatPanel" parent="screensContainer/playerOneScreen" unique_id=546236056 instance=ExtResource("2_h2yge")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
-
 [node name="playerOneDisplay" type="SubViewportContainer" parent="screensContainer/playerOneScreen" unique_id=771745802]
 custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
@@ -57,12 +52,22 @@ position = Vector2(336, 136)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="screensContainer/playerOneScreen/playerOneDisplay/subviewport" unique_id=943636782]
 
+[node name="playerOneStatPanel" parent="screensContainer/playerOneScreen" unique_id=546236056 instance=ExtResource("2_h2yge")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
 [node name="playerTwoScreen" type="HBoxContainer" parent="screensContainer" unique_id=413254192]
 custom_minimum_size = Vector2(256, 192)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_constants/separation = 0
+
+[node name="playerTwoStatPanel" parent="screensContainer/playerTwoScreen" unique_id=1495723937 instance=ExtResource("2_h2yge")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
 
 [node name="playerTwoDisplay" type="SubViewportContainer" parent="screensContainer/playerTwoScreen" unique_id=1529514276]
 custom_minimum_size = Vector2(192, 192)
@@ -79,11 +84,6 @@ render_target_update_mode = 4
 
 [node name="p2Cam" type="Camera2D" parent="screensContainer/playerTwoScreen/playerTwoDisplay/subviewport" unique_id=1213646980]
 zoom = Vector2(2, 2)
-
-[node name="playerTwoStatPanel" parent="screensContainer/playerTwoScreen" unique_id=1495723937 instance=ExtResource("2_h2yge")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
 
 [node name="borders" type="Panel" parent="." unique_id=80229243]
 custom_minimum_size = Vector2(256, 192)
