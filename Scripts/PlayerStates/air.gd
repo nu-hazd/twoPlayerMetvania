@@ -1,6 +1,6 @@
 extends PlayerState
 
-var gravity : int = 300
+var gravity : int = 400
 @export var airAcceleration : float = 0.02
 @export var airFriction : float = 0.001
 

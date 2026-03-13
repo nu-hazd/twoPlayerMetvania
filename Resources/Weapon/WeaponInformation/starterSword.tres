@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://csjnxueqvb47c"]
+
+[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="1_j4yyi"]
+
+[resource]
+script = ExtResource("1_j4yyi")
+baseDamage = 3
+staminaCost = 2
+baseCooldown = 2.0
+metadata/_custom_type_script = "uid://b2vkijpdflr2l"

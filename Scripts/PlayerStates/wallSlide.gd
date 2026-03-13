@@ -3,6 +3,7 @@ extends PlayerState
 
 
 @export var clingGravity : int = 100
+@export var clingGravityIfUp : int = 300
 @export var jumpKickStrength : Vector2i = Vector2i(100,-200)
 @export var unclingSpeed : int = 50
 var enterWallDir : float
@@ -30,7 +31,10 @@ func process(_delta : float) -> void:
 		player.velocity.x = Input.get_axis(player.playerControls.playerInputArray[0],player.playerControls.playerInputArray[1])*unclingSpeed
 	elif player.is_on_floor():
 		nextState  = $"../dash"
-	player.velocity.y += clingGravity*_delta
+	if player.velocity.y < 0:
+		player.velocity.y += clingGravityIfUp*_delta
+	else:
+		player.velocity.y += clingGravity*_delta
 	player.move_and_slide()
 
 func onExit() -> void:

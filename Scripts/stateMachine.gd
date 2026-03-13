@@ -7,7 +7,7 @@ func ready() -> void:
 	currentState.onEnter()
 func process(delta : float) -> void:
 	if currentState.nextState:
-		print("%s has %s as its next state at %s" % [currentState.name,currentState.nextState.name, Time.get_time_string_from_system()])
+		#aaprint("%s has %s as its next state at %s" % [currentState.name,currentState.nextState.name, Time.get_time_string_from_system()])
 		currentState.onExit()
 		var prevState : State = currentState
 		currentState = currentState.nextState

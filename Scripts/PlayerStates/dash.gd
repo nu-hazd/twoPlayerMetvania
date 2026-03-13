@@ -9,6 +9,7 @@ func onEnter() -> void:
 	animHandler.set("parameters/conditions/dash", true)
 	player.dashCooldown = float(player.getStat(Player.STATS.DASH_COOLDOWN))/100.0
 	player.consumeStamina(2)
+	player.set_collision_mask_value(2, false)
 	player.iFrames = 0.25
 	player.velocity.y = 0
 	duration = dashDuration
@@ -20,7 +21,8 @@ func process(_delta : float) -> void:
 	duration -= _delta
 	player.velocity.x = enterDir*dashSpeed
 	if player.wantsJump:
-		player.velocity.y += player.getStat(Player.STATS.JUMP_POWER)/3.0
+		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)/3.0
+		player.velocity.x =enterDir*dashSpeed*2
 		player.wantsJump = false
 		nextState = $"../air"
 	if player.is_on_wall() and not player.canWalljump():
@@ -30,4 +32,5 @@ func process(_delta : float) -> void:
 	player.move_and_slide()
 
 func onExit() -> void:
+	player.set_collision_mask_value(2, true)
 	animHandler.set("parameters/conditions/dash", false)
