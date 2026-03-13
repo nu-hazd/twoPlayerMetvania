@@ -9,6 +9,7 @@ var damageBonusScale : Array[Curve] = [
 	ResourceLoader.load("res://Resources/Weapon/Scalings/epic.tres"),
 	ResourceLoader.load("res://Resources/Weapon/Scalings/legendary.tres")
 ]
+@export var icon : Texture2D
 @export var tier : TIER = TIER.COMMON
 @export var baseDamage : int = 5 
 @export var staminaCost : int = 3

@@ -11,6 +11,6 @@ func use(_direction : Vector2) -> void:
 	pass
 func setUpWeapon(_user : CharacterBody2D) -> void:
 	pass
-func applyCooldown() -> void:
-	self.visible = false
-	currentCooldDown = info.baseCooldown
+func applyCooldown(cooldown : float) -> void:
+	currentCooldDown = cooldown
+	

@@ -6,6 +6,7 @@ var interactedEntities : Array[CharacterBody2D]
 
 func _ready() -> void:
 	self.visible = false
+	$rotationPivot/texture.texture = info.icon
 	for hitbox : WeaponHitbox in hitboxes:
 		hitbox.monitoring = false
 	for child : WeaponHitbox in hitboxes:
@@ -30,11 +31,8 @@ func setUpWeapon(user : CharacterBody2D) -> void:
 
 func onWeaponHitboxContact(entity, _hitboxID : String) -> void:
 	if entity not in interactedEntities:
-		if entity is Enemy:
+		if entity is StatEntity:
 			entity.damage( floor(info.baseDamage * (1 + info.damageBonusScale[info.tier].sample(userTechnique))))
-		if entity is Player:
-			if not entity.isInvincible():
-				entity.damage(floor(info.baseDamage * (1 + info.damageBonusScale[info.tier].sample(userTechnique))))
 		interactedEntities.append(entity)
 func clearInteractedEntities() -> void:
 	interactedEntities.clear()

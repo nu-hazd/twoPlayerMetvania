@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://brtt7lk2y2cqf"]
+
+[ext_resource type="Script" uid="uid://b1qwlo4itubpd" path="res://Scripts/Entities/statEntity.gd" id="1_61kch"]
+[ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="1_l0arn"]
+[ext_resource type="Script" uid="uid://5vmcjecrsuna" path="res://Scripts/stateMachine.gd" id="2_8aorb"]
+[ext_resource type="Curve" uid="uid://cu6nh7con8fx3" path="res://Resources/PlayerStatScalingCurves/healthScaling.tres" id="2_87uw4"]
+[ext_resource type="Curve" uid="uid://bevnas8ol22tv" path="res://Resources/PlayerStatScalingCurves/staminaMaxScaling.tres" id="3_bslbc"]
+[ext_resource type="Curve" uid="uid://nqbcu23t5hoq" path="res://Resources/PlayerStatScalingCurves/staminaRegenScaling.tres" id="4_mehcv"]
+[ext_resource type="Curve" uid="uid://brodjqy8aescu" path="res://Resources/PlayerStatScalingCurves/groundSpeedScaling.tres" id="5_2fdwn"]
+[ext_resource type="Curve" uid="uid://bwupyj83su" path="res://Resources/PlayerStatScalingCurves/airSpeedScaling.tres" id="6_hoqaq"]
+[ext_resource type="Curve" uid="uid://cyek5oa3ofrya" path="res://Resources/PlayerStatScalingCurves/fastFallScaling.tres" id="7_ug0ej"]
+[ext_resource type="Curve" uid="uid://buo3rdnk7j12n" path="res://Resources/PlayerStatScalingCurves/jumpPowerScaling.tres" id="8_rucrx"]
+[ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/PlayerStatScalingCurves/dashCooldownScaling.tres" id="9_iqju5"]
+
+[node name="AbstractEntity" type="CharacterBody2D" unique_id=449371144]
+script = ExtResource("1_61kch")
+scalingCurves = Array[Curve]([ExtResource("2_87uw4"), ExtResource("3_bslbc"), ExtResource("4_mehcv"), ExtResource("5_2fdwn"), ExtResource("6_hoqaq"), ExtResource("7_ug0ej"), ExtResource("8_rucrx"), ExtResource("9_iqju5")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1113159217]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1460129409]
+
+[node name="WeaponArmory" type="Node2D" parent="." unique_id=754833403]
+script = ExtResource("1_l0arn")
+metadata/_custom_type_script = "uid://dpt8w24d4nlvq"
+
+[node name="StateMachine" type="Node" parent="." unique_id=887308918]
+script = ExtResource("2_8aorb")
+metadata/_custom_type_script = "uid://5vmcjecrsuna"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2046782037]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1646831066]

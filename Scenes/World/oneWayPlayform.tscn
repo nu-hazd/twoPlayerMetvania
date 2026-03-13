@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c1i27kwqpbpkx"]
+
+[ext_resource type="Texture2D" uid="uid://db008gx3yi603" path="res://Assets/World/TileSets/grassyTileset.png" id="1_2rbh4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_466ga"]
+size = Vector2(48, 4)
+
+[node name="OneWayPlayform" type="StaticBody2D" unique_id=971671092]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1156354220]
+shape = SubResource("RectangleShape2D_466ga")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1039834786]
+texture = ExtResource("1_2rbh4")
+region_enabled = true
+region_rect = Rect2(96, 48, 48, 5)

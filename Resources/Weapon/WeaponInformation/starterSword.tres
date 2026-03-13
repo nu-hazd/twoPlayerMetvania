@@ -1,9 +1,15 @@
 [gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://csjnxueqvb47c"]
 
+[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="1_8n025"]
 [ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="1_j4yyi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gcci"]
+atlas = ExtResource("1_8n025")
+region = Rect2(0, 0, 32, 32)
 
 [resource]
 script = ExtResource("1_j4yyi")
+icon = SubResource("AtlasTexture_3gcci")
 baseDamage = 3
 staminaCost = 2
 baseCooldown = 2.0
