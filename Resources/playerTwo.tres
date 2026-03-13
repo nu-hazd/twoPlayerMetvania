@@ -4,6 +4,12 @@
 
 [resource]
 script = ExtResource("1_avasd")
-playerIndex = 1
-playerInputArray = Array[String](["p2_l", "p2_r", "p2_d", "p2_jump", "p2_dash", "p2_u", "p2_w1", "p2_w2"])
+left = "p2_l"
+right = "p2_r"
+up = "p2_u"
+down = "p2_d"
+jump = "p2_jump"
+dash = "p2_dash"
+useWeapon1 = "p2_w1"
+useWeapon2 = "p2_w2"
 metadata/_custom_type_script = "uid://bqrcr15qrwwoq"

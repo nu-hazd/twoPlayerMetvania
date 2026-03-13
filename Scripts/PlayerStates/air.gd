@@ -2,14 +2,14 @@ extends PlayerState
 
 var gravity : int = 400
 @export var airAcceleration : float = 0.02
-@export var airFriction : float = 0.001
+@export var airFriction : float = 0.005
 
 func onEnter() -> void:
 	animHandler.set("parameters/conditions/air", true)
 	animHandler.set("parameters/air/blend_position", sign(player.velocity.y))
 
 func process(_delta : float) -> void:
-	var dirX : float = Input.get_axis(player.playerControls.playerInputArray[0],player.playerControls.playerInputArray[1])
+	var dirX : float = Input.get_axis(player.playerControls.left,player.playerControls.right)
 	if dirX:
 		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.AIR_SPEED), airAcceleration)
 	else:
@@ -19,10 +19,10 @@ func process(_delta : float) -> void:
 		player.wantsJump = false
 		player.usedDoubleJump = true
 		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)/1.3
-		player.consumeStamina(1)
-	if Input.is_action_just_pressed(player.playerControls.playerInputArray[2]):
+		player.consumeStamina(2)
+	if Input.is_action_just_pressed(player.playerControls.down):
 		player.velocity.y += player.getStat(Player.STATS.FAST_FALL)*_delta
-	if Input.is_action_just_pressed(player.playerControls.playerInputArray[4]) && player.canDash():
+	if Input.is_action_just_pressed(player.playerControls.dash) && player.canDash():
 		nextState = $"../dash"
 	if Vector2($"../../left".is_colliding(), $"../../right".is_colliding()) and player.canWalljump():
 		nextState = $"../wallSlide"
@@ -35,5 +35,5 @@ func onExit() -> void:
 	animHandler.set("parameters/conditions/air", false)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released(player.playerControls.playerInputArray[3]):
+	if event.is_action_released(player.playerControls.jump):
 		player.velocity.y *= 0.5

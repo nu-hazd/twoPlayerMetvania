@@ -6,6 +6,8 @@ var interactedEntities : Array[CharacterBody2D]
 
 func _ready() -> void:
 	self.visible = false
+	for hitbox : WeaponHitbox in hitboxes:
+		hitbox.monitoring = false
 	for child : WeaponHitbox in hitboxes:
 		child.entityEnteredHitbox.connect(onWeaponHitboxContact)
 func use(_direction : Vector2) -> void:
@@ -25,6 +27,7 @@ func setUpWeapon(user : CharacterBody2D) -> void:
 	for hitbox : WeaponHitbox in hitboxes:
 		for mask : int in collisionMasks:
 			hitbox.set_collision_mask_value(mask, true)
+
 func onWeaponHitboxContact(entity, _hitboxID : String) -> void:
 	if entity not in interactedEntities:
 		if entity is Enemy:

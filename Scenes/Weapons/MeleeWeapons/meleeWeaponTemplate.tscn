@@ -100,6 +100,7 @@ region_rect = Rect2(0, 0, 32, 32.043)
 position = Vector2(6, -6)
 
 [node name="0" parent="rotationPivot/hitboxes" unique_id=1679352974 instance=ExtResource("3_v23wy")]
+monitoring = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotationPivot/hitboxes/0" unique_id=1871438314]
 polygon = PackedVector2Array(-6, 3, -6, -1, 9, -15, 15, -15, 15, -8, -1, 6, -5, 5)

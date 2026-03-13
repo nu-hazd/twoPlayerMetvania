@@ -6,8 +6,9 @@ class_name WeaponArmory
 var useDirection : Vector2 = Vector2.RIGHT
 @export var currentWeapons : Array[Weapon]
 
-func _ready() -> void:
-	await  user.ready
+func initSystem() -> void:
+	for child : Weapon in self.get_children():
+		currentWeapons.push_back(child)
 	updateWeapons()
 func _process(delta: float) -> void:
 	for weapon : Weapon in currentWeapons:

@@ -14,91 +14,12 @@
 [ext_resource type="Curve" uid="uid://buo3rdnk7j12n" path="res://Resources/PlayerStatScalingCurves/jumpPowerScaling.tres" id="8_fs7ks"]
 [ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/PlayerStatScalingCurves/dashCooldownScaling.tres" id="9_l6n3p"]
 [ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="11_fd4e3"]
-[ext_resource type="Script" uid="uid://ii0bss66x0y0" path="res://Scripts/Weapon/Melee/meleeWeapon.gd" id="12_p6fni"]
-[ext_resource type="Resource" uid="uid://csjnxueqvb47c" path="res://Resources/Weapon/WeaponInformation/starterSword.tres" id="13_w4uu0"]
-[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="14_abjg5"]
-[ext_resource type="PackedScene" uid="uid://cq2kowi47pv6l" path="res://Scenes/Weapons/weaponHitbox.tscn" id="15_e8wcv"]
+[ext_resource type="PackedScene" uid="uid://3kpmf5gmmdmf" path="res://Scenes/Weapons/MeleeWeapons/meleeWeaponTemplate.tscn" id="12_udx2w"]
 [ext_resource type="Script" uid="uid://cu0j8gkydkhou" path="res://Scripts/PlayerStates/wallSlide.gd" id="15_fd4e3"]
 [ext_resource type="Script" uid="uid://c7mbab3osw4ln" path="res://Scripts/PlayerStates/dash.gd" id="15_h4iuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(18, 28)
-
-[sub_resource type="Animation" id="Animation_ytp0h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rotationPivot:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.32357672]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rotationPivot/hitboxes/0:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_rhve7"]
-resource_name = "attack"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rotationPivot:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.5061454830783556, 2.0943951023931953]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"applyCooldown"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("rotationPivot/hitboxes/0:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v23wy"]
-_data = {
-&"RESET": SubResource("Animation_ytp0h"),
-&"attack": SubResource("Animation_rhve7")
-}
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -631,38 +552,12 @@ shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=635894924]
 
-[node name="WeaponArmory" type="Node2D" parent="." unique_id=916014367 node_paths=PackedStringArray("user", "currentWeapons")]
+[node name="WeaponArmory" type="Node2D" parent="." unique_id=916014367 node_paths=PackedStringArray("user")]
 script = ExtResource("11_fd4e3")
 user = NodePath("..")
-currentWeapons = [NodePath("sword")]
 metadata/_custom_type_script = "uid://dpt8w24d4nlvq"
 
-[node name="sword" type="Node2D" parent="WeaponArmory" unique_id=1808072781]
-script = ExtResource("12_p6fni")
-info = ExtResource("13_w4uu0")
-metadata/_custom_type_script = "uid://j1vk8qinul3f"
-
-[node name="rotationPivot" type="Marker2D" parent="WeaponArmory/sword" unique_id=291989916]
-position = Vector2(6.0000005, -2.3841858e-07)
-rotation = -0.32357672
-
-[node name="texture" type="Sprite2D" parent="WeaponArmory/sword/rotationPivot" unique_id=713524184]
-position = Vector2(6, -6)
-texture = ExtResource("14_abjg5")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32.043)
-
-[node name="hitboxes" type="Node2D" parent="WeaponArmory/sword/rotationPivot" unique_id=813477077]
-position = Vector2(6, -6)
-
-[node name="0" parent="WeaponArmory/sword/rotationPivot/hitboxes" unique_id=1679352974 instance=ExtResource("15_e8wcv")]
-monitoring = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WeaponArmory/sword/rotationPivot/hitboxes/0" unique_id=1871438314]
-polygon = PackedVector2Array(-6, 3, -6, -1, 9, -15, 15, -15, 15, -8, -1, 6, -5, 5)
-
-[node name="swing" type="AnimationPlayer" parent="WeaponArmory/sword" unique_id=1324418031]
-libraries/ = SubResource("AnimationLibrary_v23wy")
+[node name="sword" parent="WeaponArmory" unique_id=1808072781 instance=ExtResource("12_udx2w")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=632191384]
 libraries/ = SubResource("AnimationLibrary_gymyn")

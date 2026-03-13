@@ -24,7 +24,7 @@ enum STATS {
 	0,		0,
 	1,		1,		1,
 	10,		5,		1,
-	100,	90,		300,	-200,	250,
+	50,		90,  	300,	-125,	300,
 	0,		0,		0	]
 var stats : Array[int]
 
@@ -38,6 +38,7 @@ var wantsJump : float = 0.0
 var disableWalljump : float = 0
 func _ready() -> void:
 	stats = baseStats
+	weapon_armory.initSystem()
 	randomizeStats()
 	updateStats()
 	stats[STATS.CURRENT_HEALTH] = stats[STATS.MAX_HEALTH]
@@ -46,15 +47,15 @@ func _ready() -> void:
 		state.player = self
 	state_machine.ready()
 func _physics_process(delta: float) -> void:
-	weapon_armory.useDirection = Input.get_vector(playerControls.playerInputArray[0],playerControls.playerInputArray[1],playerControls.playerInputArray[5],playerControls.playerInputArray[3])
+	weapon_armory.useDirection = Input.get_vector(playerControls.left,playerControls.right,playerControls.up,playerControls.down)
 	if not weapon_armory.useDirection.x:
 		weapon_armory.useDirection = Vector2(lastDirection,weapon_armory.useDirection.y)
-	if Input.is_action_just_pressed(playerControls.playerInputArray[6]):
+	if Input.is_action_just_pressed(playerControls.useWeapon1):
 		weapon_armory.useWeapon(0)
-	if Input.is_action_just_pressed(playerControls.playerInputArray[7]):
+	if Input.is_action_just_pressed(playerControls.useWeapon2):
 		weapon_armory.useWeapon(1)
 	
-	if Input.is_action_just_pressed(playerControls.playerInputArray[3]):
+	if Input.is_action_just_pressed(playerControls.jump):
 		wantsJump = 0.1
 	if velocity.x:
 		lastDirection = sign(velocity.x)
@@ -116,4 +117,4 @@ func randomizeStats() -> void:
 	setStat(STATS.HAS_WALL_JUMP, 1)
 	improveAttribute(STATS.VITALITY, randi_range(0, 10))
 	improveAttribute(STATS.TECHNIQUE, randi_range(0, 10))
-	improveAttribute(STATS.AGILITY, randi_range(0, 10))
+	improveAttribute(STATS.AGILITY, 0)

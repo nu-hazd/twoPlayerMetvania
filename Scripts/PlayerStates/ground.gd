@@ -22,13 +22,11 @@ func process(_delta : float) -> void:
 		nextState = $"../air"
 	if player.wantsJump and player.getStat(Player.STATS.CURRENT_STAMINA) >= 1:
 		player.wantsJump = 0
-		player.consumeStamina(1)
+		player.consumeStamina(2)
 		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)
-	if Input.is_action_just_pressed(player.playerControls.playerInputArray[4]):
-		var here 
-		if player.canDash():
+	if Input.is_action_just_pressed(player.playerControls.dash) and player.canDash():
 			nextState = $"../dash"
-	var dirX : float = Input.get_axis(player.playerControls.playerInputArray[0],player.playerControls.playerInputArray[1])
+	var dirX : float = Input.get_axis(player.playerControls.left,player.playerControls.right)
 	if dirX:
 		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.GROUND_SPEED), groundAcceleration)
 	else:
