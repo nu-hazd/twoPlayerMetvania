@@ -42,10 +42,13 @@ func updateStatPanel(stats : Array[int]) -> void:
 		$edge/informationListings/margin/stats/unlocks/wallJump.modulate = Color.RED
 	var attributeText : String = "
 [table=2]
-[cell][color=gold]Souls:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=red]Vitality:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=green]Agility:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=blue]Technique:[/color][/cell][cell][color=white]%s[/color][/cell]
+[cell][color=gold]$[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=red]VIT[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=green]AGI[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=blue]TEC[/color][/cell][cell][color=white]%s[/color][/cell]
 [/table]
 " % [
 	stats[Player.STATS.SOULS],

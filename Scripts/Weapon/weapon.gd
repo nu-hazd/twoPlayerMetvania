@@ -10,7 +10,7 @@ func canUse(userStamina : int) -> bool:
 func use(_direction : Vector2) -> void:
 	pass
 func setUpWeapon(_user : CharacterBody2D) -> void:
-	pass
+	$rotationPivot/texture.texture = info.icon
 func applyCooldown(cooldown : float) -> void:
 	currentCooldDown = cooldown
 	

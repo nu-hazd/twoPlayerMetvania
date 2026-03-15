@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cm4xspk67teav"]
+
+[ext_resource type="Script" uid="uid://8oi074d4wryh" path="res://Scripts/World/hazardArea.gd" id="1_j7caf"]
+
+[node name="HazardArea" type="Area2D" unique_id=1868266929]
+collision_layer = 0
+script = ExtResource("1_j7caf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

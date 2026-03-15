@@ -1,10 +1,10 @@
 extends StatEntity
 class_name Player
 
-
+var rom : Room
 @export var playerControls : PlayerControls
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
-
+var playerScreen : PlayerScreen
 #enum STAT_MODIFIER {
 	#MAX_HEALTH, MAX_STAMINA, STAMINA_RECHARGE
 #}
@@ -15,6 +15,7 @@ var lastDirection : int = 1
 var usedDoubleJump : bool = false
 var wantsJump : float = 0.0
 var disableWalljump : float = 0
+var lastSafePos : Vector2
 func _ready() -> void:
 	super._ready()
 	for state : PlayerState in $StateMachine.get_children():
@@ -33,6 +34,8 @@ func _physics_process(delta: float) -> void:
 	if velocity.x:
 		lastDirection = sign(velocity.x)
 		$Sprite2D.scale.x = sign(velocity.x)
+	if is_on_floor():
+		lastSafePos = global_position
 	tickCooldowns(delta)
 	state_machine.process(delta)
 
@@ -59,3 +62,9 @@ func randomizeStats() -> void:
 	improveAttribute(STATS.VITALITY, randi_range(0, 10))
 	improveAttribute(STATS.TECHNIQUE, randi_range(0, 10))
 	improveAttribute(STATS.AGILITY, 0)
+func setCameraLimits(boundaries : Vector4i) -> void:
+	var camera : Camera2D = playerScreen.player_cam
+	camera.limit_left = boundaries[0]
+	camera.limit_right = boundaries[1]
+	camera.limit_top = boundaries[2]
+	camera.limit_bottom = boundaries[3]

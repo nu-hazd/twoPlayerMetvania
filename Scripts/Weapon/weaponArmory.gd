@@ -11,6 +11,7 @@ signal updateHUD(weapons :  Array[Weapon])
 func initSystem() -> void:
 	for child : Weapon in self.get_children():
 		currentWeapons.push_back(child)
+		child.setUpWeapon(user)
 	updateWeapons()
 func _process(delta: float) -> void:
 	for weapon : Weapon in currentWeapons:
@@ -27,10 +28,8 @@ func useWeapon(weaponNumber : int) -> void:
 		else:
 			weaponToUse.use(useDirection)
 func updateWeapons() -> void:
-	updateHUD.emit(currentWeapons)
 	for weapon : Weapon in currentWeapons:
-		if user is Player:
+		if user is StatEntity:
 			weapon.userTechnique = user.getStat(Player.STATS.TECHNIQUE)
-		elif user is Enemy:
-			weapon.userTechnique = user.technique
 		weapon.setUpWeapon(user)
+	updateHUD.emit(currentWeapons)

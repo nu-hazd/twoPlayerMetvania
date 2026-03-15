@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://brtt7lk2y2cqf"]
 
 [ext_resource type="Script" uid="uid://b1qwlo4itubpd" path="res://Scripts/Entities/statEntity.gd" id="1_61kch"]
+[ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="1_87uw4"]
 [ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="1_l0arn"]
 [ext_resource type="Script" uid="uid://5vmcjecrsuna" path="res://Scripts/stateMachine.gd" id="2_8aorb"]
 [ext_resource type="Curve" uid="uid://cu6nh7con8fx3" path="res://Resources/PlayerStatScalingCurves/healthScaling.tres" id="2_87uw4"]
@@ -12,7 +13,105 @@
 [ext_resource type="Curve" uid="uid://buo3rdnk7j12n" path="res://Resources/PlayerStatScalingCurves/jumpPowerScaling.tres" id="8_rucrx"]
 [ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/PlayerStatScalingCurves/dashCooldownScaling.tres" id="9_iqju5"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_87uw4"]
+shader = ExtResource("1_87uw4")
+shader_parameter/hitFlashColor = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="Animation" id="Animation_vbauc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hitFlashColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w4uu0"]
+resource_name = "heal"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hitFlashColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0.5530097, 0.92289466, 0.6379125, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_p6fni"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hitFlashColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.5710682, 0.50889325, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bslbc"]
+_data = {
+&"RESET": SubResource("Animation_vbauc"),
+&"heal": SubResource("Animation_w4uu0"),
+&"hit": SubResource("Animation_p6fni")
+}
+
 [node name="AbstractEntity" type="CharacterBody2D" unique_id=449371144]
+material = SubResource("ShaderMaterial_87uw4")
 script = ExtResource("1_61kch")
 scalingCurves = Array[Curve]([ExtResource("2_87uw4"), ExtResource("3_bslbc"), ExtResource("4_mehcv"), ExtResource("5_2fdwn"), ExtResource("6_hoqaq"), ExtResource("7_ug0ej"), ExtResource("8_rucrx"), ExtResource("9_iqju5")])
 
@@ -31,3 +130,6 @@ metadata/_custom_type_script = "uid://5vmcjecrsuna"
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=2046782037]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1646831066]
+
+[node name="hitAndHeal" type="AnimationPlayer" parent="." unique_id=204057456]
+libraries/ = SubResource("AnimationLibrary_bslbc")

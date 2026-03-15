@@ -42,8 +42,12 @@ func improveAttribute(attribute : STATS, amount : int) -> void:
 	else:
 		push_warning("Improve Attribute function took in non-attribute STAT value #%f" % attribute)
 func heal(amount : int) -> void:
+	$hitAndHeal.play("heal")
 	setStat(STATS.CURRENT_HEALTH, clamp(getStat(STATS.CURRENT_HEALTH) + amount,0, getStat(STATS.MAX_HEALTH)))
 func damage(amount : int) -> void:
+	if self is Player:
+		self.iFrames = max(0.35, self.iFrames)
+	$hitAndHeal.play("hit")
 	setStat(STATS.CURRENT_HEALTH, clamp(getStat(STATS.CURRENT_HEALTH) - amount,0, getStat(STATS.MAX_HEALTH)))
 func isInvincible() -> bool:
 	return iFrames > 0

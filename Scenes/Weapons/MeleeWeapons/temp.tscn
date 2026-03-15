@@ -1,21 +1,8 @@
 [gd_scene format=3 uid="uid://8j63ko7ukfdn"]
 
 [ext_resource type="Script" uid="uid://ii0bss66x0y0" path="res://Scripts/Weapon/Melee/meleeWeapon.gd" id="1_k53ex"]
-[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="3_k53ex"]
-[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="3_vujfx"]
+[ext_resource type="Resource" uid="uid://6us0n3c4lkjs" path="res://Resources/Weapon/WeaponInformation/coolerBlade.tres" id="2_k53ex"]
 [ext_resource type="PackedScene" uid="uid://cq2kowi47pv6l" path="res://Scenes/Weapons/weaponHitbox.tscn" id="4_8ifbh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3gcci"]
-atlas = ExtResource("3_vujfx")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="Resource" id="Resource_idirt"]
-script = ExtResource("3_k53ex")
-icon = SubResource("AtlasTexture_3gcci")
-baseDamage = 3
-staminaCost = 5
-baseCooldown = 1.0
-metadata/_custom_type_script = "uid://b2vkijpdflr2l"
 
 [sub_resource type="Animation" id="Animation_ytp0h"]
 length = 0.001
@@ -105,7 +92,7 @@ _data = {
 
 [node name="swingWeaponSimple" type="Node2D" unique_id=1808072781]
 script = ExtResource("1_k53ex")
-info = SubResource("Resource_idirt")
+info = ExtResource("2_k53ex")
 metadata/_custom_type_script = "uid://j1vk8qinul3f"
 
 [node name="rotationPivot" type="Marker2D" parent="." unique_id=291989916]
@@ -114,8 +101,6 @@ rotation = -0.32357672
 
 [node name="texture" type="Sprite2D" parent="rotationPivot" unique_id=713524184]
 position = Vector2(6, -6)
-texture = ExtResource("3_vujfx")
-region_enabled = true
 region_rect = Rect2(32, 32, 32, 32.043)
 
 [node name="hitboxes" type="Node2D" parent="rotationPivot" unique_id=813477077]

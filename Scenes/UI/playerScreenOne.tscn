@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://csv2w18u0qqv"]
+
+[ext_resource type="Script" uid="uid://1wrwfkr1j0fl" path="res://Scripts/UI/playerScreen.gd" id="1_kargc"]
+[ext_resource type="PackedScene" uid="uid://bstnq86k4h03f" path="res://Scenes/UI/statsPanel.tscn" id="2_kargc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6j37"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_25ivs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kargc"]
+resource_name = "fade"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a6j37"]
+resource_name = "unfade"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenFade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2g4ff"]
+_data = {
+&"RESET": SubResource("Animation_25ivs"),
+&"fade": SubResource("Animation_kargc"),
+&"unfade": SubResource("Animation_a6j37")
+}
+
+[node name="playerScreen" type="HBoxContainer" unique_id=320677925 node_paths=PackedStringArray("statPanel")]
+custom_minimum_size = Vector2(1028, 380)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.49500003
+offset_right = 4.0
+offset_bottom = -0.16003418
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/separation = 0
+script = ExtResource("1_kargc")
+statPanel = NodePath("playerStatPanel")
+
+[node name="displayContainer" type="PanelContainer" parent="." unique_id=1759798317]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="playerDisplay" type="SubViewportContainer" parent="displayContainer" unique_id=1306258840]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+stretch = true
+
+[node name="playerViewport" type="SubViewport" parent="displayContainer/playerDisplay" unique_id=1518408232]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(771, 380)
+render_target_update_mode = 4
+
+[node name="playerCam" type="Camera2D" parent="displayContainer/playerDisplay/playerViewport" unique_id=1321561719]
+zoom = Vector2(3, 3)
+drag_vertical_enabled = true
+drag_left_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="screenFade" type="Panel" parent="displayContainer" unique_id=1891085081]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a6j37")
+
+[node name="screenFadePlayer" type="AnimationPlayer" parent="displayContainer" unique_id=220521170]
+libraries/ = SubResource("AnimationLibrary_2g4ff")
+
+[node name="playerStatPanel" parent="." unique_id=546236056 instance=ExtResource("2_kargc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25

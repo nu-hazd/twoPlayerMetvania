@@ -1,5 +1,5 @@
 extends Node2D
-class_name Room
+class_name TempRoom
 
 @onready var player_one: Player = $playerOne
 @onready var player_two: Player = $playerTwo

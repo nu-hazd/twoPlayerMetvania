@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bhf0myivce3ir" path="res://Scripts/UI/statPanel.gd" id="1_c7460"]
 [ext_resource type="FontFile" uid="uid://df1d4wy4dh705" path="res://Assets/Misc/PixelatedEleganceRegular-ovawB.ttf" id="1_khnck"]
 [ext_resource type="Texture2D" uid="uid://bhgnjrlqkl45c" path="res://Assets/Misc/icon.svg" id="2_nnu00"]
-[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="3_37fl8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 bg_color = Color(0, 0, 0, 1)
@@ -46,10 +45,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x1021"]
-atlas = ExtResource("3_37fl8")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpykh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -128,7 +123,7 @@ alignment = 1
 [node name="weapon1" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=877476952]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = SubResource("AtlasTexture_x1021")
+texture = ExtResource("2_nnu00")
 expand_mode = 1
 
 [node name="cd" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weapon1" unique_id=1090706941]
@@ -178,12 +173,19 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
+theme_override_constants/line_separation = 0
+theme_override_constants/table_v_separation = 16
+theme_override_fonts/normal_font = ExtResource("1_khnck")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[table=2]
-[cell][color=gold]Souls:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=red]Vitality:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=green]Agility:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=blue]Technique:[/color][/cell][cell][color=white]%s[/color][/cell]
+[cell][color=gold]$[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=red]VIT[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=green]AGI[/color][/cell][cell][color=white]%s[/color][/cell]
+
+[cell][color=blue]TEC[/color][/cell][cell][color=white]%s[/color][/cell]
 [/table]"
 fit_content = true
 horizontal_alignment = 1

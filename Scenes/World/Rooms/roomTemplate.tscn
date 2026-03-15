@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dikes5iotp0bh"]
+
+[ext_resource type="Script" uid="uid://bfqsq777ikjq3" path="res://Scripts/World/room.gd" id="1_swfdp"]
+[ext_resource type="TileSet" uid="uid://bscpi10wxyxgv" path="res://Resources/overworld.tres" id="2_eqoas"]
+
+[node name="room" type="Node2D" unique_id=924014895]
+script = ExtResource("1_swfdp")
+
+[node name="boundaries" type="Node2D" parent="." unique_id=551866517]
+
+[node name="topLeft" type="Marker2D" parent="boundaries" unique_id=665698672]
+
+[node name="bottomRight" type="Marker2D" parent="boundaries" unique_id=1961456532]
+position = Vector2(256, 256)
+gizmo_extents = 100.0
+
+[node name="back" type="TileMapLayer" parent="." unique_id=387337269]
+tile_set = ExtResource("2_eqoas")
+
+[node name="middle" type="TileMapLayer" parent="." unique_id=1735406811]
+tile_set = ExtResource("2_eqoas")
+
+[node name="platforms" type="Node2D" parent="middle" unique_id=537787430]
+
+[node name="spikes" type="Node2D" parent="middle" unique_id=2015315501]
+
+[node name="EnemyManager" type="Node2D" parent="." unique_id=30584525]
+
+[node name="Projectiles" type="Node2D" parent="." unique_id=1325649732]
+
+[node name="Players" type="Node2D" parent="." unique_id=150351576]
+
+[node name="front" type="TileMapLayer" parent="." unique_id=1312838953]
+tile_set = ExtResource("2_eqoas")
