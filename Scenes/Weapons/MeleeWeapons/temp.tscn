@@ -96,7 +96,7 @@ info = ExtResource("2_k53ex")
 metadata/_custom_type_script = "uid://j1vk8qinul3f"
 
 [node name="rotationPivot" type="Marker2D" parent="." unique_id=291989916]
-position = Vector2(14, 0)
+position = Vector2(3.9999998, 1.1920929e-07)
 rotation = -0.32357672
 
 [node name="texture" type="Sprite2D" parent="rotationPivot" unique_id=713524184]

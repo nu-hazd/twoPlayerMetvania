@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://x4pkugey8h6y"]
+
+[ext_resource type="Script" uid="uid://btpf2dieyglbb" path="res://Scripts/UI/selectContainergd.gd" id="1_ig4lp"]
+[ext_resource type="PackedScene" uid="uid://d07lufq6awthp" path="res://Scenes/UI/playerCustomize.tscn" id="2_ig4lp"]
+[ext_resource type="Resource" uid="uid://bs5wanbtc20m1" path="res://Resources/playerOne.tres" id="3_vfhkm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wygr0"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="characterSelection" type="Panel" unique_id=1731230855]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wygr0")
+script = ExtResource("1_ig4lp")
+
+[node name="divisorLine" type="ColorRect" parent="." unique_id=628846391]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="customizeScreens" type="HBoxContainer" parent="." unique_id=1013379305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pOneSelect" parent="customizeScreens" unique_id=635431242 instance=ExtResource("2_ig4lp")]
+layout_mode = 2
+controls = ExtResource("3_vfhkm")
+
+[node name="pTwoSelect" parent="customizeScreens" unique_id=1293930834 instance=ExtResource("2_ig4lp")]
+layout_mode = 2

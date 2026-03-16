@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bddjq2baif8q6"
-path="res://.godot/imported/blue.png-abbcc85b1cee47faccaf8865d0cb25d4.ctex"
+uid="uid://du43sh6iyqkn3"
+path="res://.godot/imported/bg_01_garden.png-b4a124f2e97223b95785021ba37991b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Player/blue.png"
-dest_files=["res://.godot/imported/blue.png-abbcc85b1cee47faccaf8865d0cb25d4.ctex"]
+source_file="res://Assets/World/backgrounds/bg_01_garden.png"
+dest_files=["res://.godot/imported/bg_01_garden.png-b4a124f2e97223b95785021ba37991b9.ctex"]
 
 [params]
 

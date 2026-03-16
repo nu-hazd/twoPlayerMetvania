@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5mgkl4q0tk4w"
-path="res://.godot/imported/green.png-b2342da654836ec5de315b0422eba4d2.ctex"
+uid="uid://cuk3fgdakdp6p"
+path="res://.godot/imported/bg_00_witch_shop.png-a64a66df44ed5b4ce62f95ded1264f1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Player/green.png"
-dest_files=["res://.godot/imported/green.png-b2342da654836ec5de315b0422eba4d2.ctex"]
+source_file="res://Assets/World/backgrounds/bg_00_witch_shop.png"
+dest_files=["res://.godot/imported/bg_00_witch_shop.png-a64a66df44ed5b4ce62f95ded1264f1a.ctex"]
 
 [params]
 

@@ -28,6 +28,7 @@ func process(_delta : float) -> void:
 			nextState = $"../dash"
 	if Input.is_action_just_pressed(player.playerControls.down):
 		player.position.y +=1
+		nextState = $"../crouch"
 	var dirX : float = Input.get_axis(player.playerControls.left,player.playerControls.right)
 	if dirX:
 		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.GROUND_SPEED), groundAcceleration)

@@ -6,6 +6,15 @@
 [node name="room" type="Node2D" unique_id=924014895]
 script = ExtResource("1_swfdp")
 
+[node name="backgrounds" type="Node2D" parent="." unique_id=1320486222]
+z_index = -1
+
+[node name="back" type="TextureRect" parent="backgrounds" unique_id=1475351037]
+
+[node name="mid" type="TextureRect" parent="backgrounds" unique_id=1024680900]
+
+[node name="front" type="TextureRect" parent="backgrounds" unique_id=1753401565]
+
 [node name="boundaries" type="Node2D" parent="." unique_id=551866517]
 
 [node name="topLeft" type="Marker2D" parent="boundaries" unique_id=665698672]

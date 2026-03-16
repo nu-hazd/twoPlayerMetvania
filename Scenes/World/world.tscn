@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://duhl7gmu2jnsy" path="res://Scenes/World/Rooms/room0test.tscn" id="2_vadfg"]
 [ext_resource type="PackedScene" uid="uid://cun4j4rp2fpng" path="res://Scenes/World/Rooms/room1test.tscn" id="3_l1hd3"]
 [ext_resource type="PackedScene" uid="uid://cpgu6y3pv7lpc" path="res://Scenes/World/door.tscn" id="4_adcqc"]
+[ext_resource type="AudioStream" uid="uid://dpdpnqfvrk6si" path="res://Assets/Sound/Music/overworld.mp3" id="5_l1hd3"]
 
 [node name="world" type="Node2D" unique_id=549322314 node_paths=PackedStringArray("start_room")]
 script = ExtResource("1_yp2ti")
@@ -25,11 +26,11 @@ targetDoor = NodePath("../OneToZero")
 arrival_pos = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="Doors/ZeroToOne" unique_id=501385526]
-position = Vector2(-48.76776, 3.9479883)
+position = Vector2(-36.99623, 3.9479883)
 gizmo_extents = 16.0
 
 [node name="OneToZero" parent="Doors" unique_id=716753206 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(329.00003, 216.00002)
+position = Vector2(309, 216.00002)
 scale = Vector2(0.65078586, 2.4674163)
 id = "one to zero"
 targetDoor = NodePath("../ZeroToOne")
@@ -38,3 +39,6 @@ arrival_pos = NodePath("Marker2D2")
 [node name="Marker2D2" type="Marker2D" parent="Doors/OneToZero" unique_id=1337145372]
 position = Vector2(36.87845, 4.052816)
 scale = Vector2(0.9137493, 1.0265522)
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="." unique_id=2055467407]
+stream = ExtResource("5_l1hd3")

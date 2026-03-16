@@ -28,7 +28,7 @@ func _ready() -> void:
 	updateStats()
 	weapon_armory.initSystem()
 	stats[STATS.CURRENT_HEALTH] = stats[STATS.MAX_HEALTH]
-	stats[STATS.CURRENT_STAMINA] = 0
+	stats[STATS.CURRENT_STAMINA] = stats[STATS.MAX_STAMINA]
 
 func getStat(stat : STATS) -> int:
 	return self.stats[stat]
@@ -56,8 +56,18 @@ func consumeStamina(consumed : int) -> void:
 func grantStamina(granted : int) -> void:
 	setStat(STATS.CURRENT_STAMINA, clampi(getStat(STATS.CURRENT_STAMINA)+granted,0,getStat(STATS.MAX_STAMINA)))
 func updateStats() -> void:
+	var prev : int  = stats[STATS.MAX_HEALTH]
 	stats[STATS.MAX_HEALTH] = baseStats[STATS.MAX_HEALTH] + int(scalingCurves[0].sample(stats[STATS.VITALITY]))
-	stats[STATS.MAX_STAMINA] = baseStats[STATS.MAX_STAMINA] + int(scalingCurves[1].sample(stats[STATS.VITALITY]))
+	if prev < stats[STATS.MAX_HEALTH]:
+		stats[STATS.CURRENT_HEALTH] += stats[STATS.MAX_HEALTH] - prev
+	else:
+		stats[STATS.CURRENT_HEALTH] = min(stats[STATS.CURRENT_HEALTH], stats[STATS.MAX_HEALTH])
+	var prev2 : int  = stats[STATS.MAX_STAMINA]
+	stats[STATS.MAX_STAMINA] = baseStats[STATS.MAX_STAMINA] + int(scalingCurves[0].sample(stats[STATS.VITALITY]))
+	if prev2 < stats[STATS.MAX_STAMINA]:
+		stats[STATS.CURRENT_STAMINA] += stats[STATS.MAX_STAMINA] - prev
+	else:
+		stats[STATS.CURRENT_STAMINA] = min(stats[STATS.CURRENT_STAMINA], stats[STATS.MAX_STAMINA])
 	stats[STATS.STAMINA_RECHARGE] = baseStats[STATS.STAMINA_RECHARGE] + floor(scalingCurves[2].sample(stats[STATS.TECHNIQUE]))
 	stats[STATS.GROUND_SPEED] = baseStats[STATS.GROUND_SPEED] + int(scalingCurves[3].sample(stats[STATS.AGILITY]))
 	stats[STATS.AIR_SPEED] =baseStats[STATS.AIR_SPEED] + int(scalingCurves[4].sample(stats[STATS.AGILITY]))

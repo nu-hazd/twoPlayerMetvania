@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g6wuialtxgcg"
-path="res://.godot/imported/red.png-778215bb8024ec8b0666278c6f8b1ef2.ctex"
+uid="uid://cacmsnxr4eaak"
+path="res://.godot/imported/bg_2.png-7e22d27e629faeb24f2b07857bf4e3b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Player/red.png"
-dest_files=["res://.godot/imported/red.png-778215bb8024ec8b0666278c6f8b1ef2.ctex"]
+source_file="res://Assets/World/backgrounds/bg_2.png"
+dest_files=["res://.godot/imported/bg_2.png-7e22d27e629faeb24f2b07857bf4e3b6.ctex"]
 
 [params]
 

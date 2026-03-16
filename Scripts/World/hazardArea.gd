@@ -10,6 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.iFrames = 0
 		body.damage(areaDamage)
 		if isAbbys:
+			body.velocity = Vector2.ZERO
 			body.set_physics_process(false)
 			body.playerScreen.fadeScreen()
 			await body.playerScreen.screen_fade_player.animation_finished

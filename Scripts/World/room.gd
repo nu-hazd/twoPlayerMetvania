@@ -20,7 +20,7 @@ func _ready() -> void:
 	for door : Door in doors:
 		door.parentRoom = self
 		door.playerEnteredDoor.connect(exitRoom)
-func exitRoom(player : Player, destinationDoor : Door, enterDoor : Door) -> void:
+func exitRoom(player : Player, destinationDoor : Door) -> void:
 	player.set_physics_process(false)
 	players.remove_child(player)
 	player.playerScreen.fadeScreen()

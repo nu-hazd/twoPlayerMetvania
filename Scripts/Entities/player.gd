@@ -49,6 +49,8 @@ func tickCooldowns(delta : float) -> void:
 		grantStamina(getStat(STATS.STAMINA_RECHARGE))
 		oneSecondInterval = 1
 
+func setAtlas(newAtlas : AtlasTexture) -> void:
+	$Sprite2D.texture = newAtlas
 func canDash() -> bool:
 	return stats[STATS.HAS_DASH] != 0 and dashCooldown == 0.0 and getStat(STATS.CURRENT_STAMINA) >= 2
 func canWalljump() -> bool:

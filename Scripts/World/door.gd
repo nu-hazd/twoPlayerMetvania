@@ -24,7 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if not $clear.is_stopped():
 			$clearSecond.start()
 		$clear.start()
-		playerEnteredDoor.emit(body, targetDoor, self)
+		playerEnteredDoor.emit(body, targetDoor)
 
 func _on_clear_timeout() -> void:
 	doNotInteract.pop_front()
