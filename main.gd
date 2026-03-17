@@ -8,6 +8,7 @@ var playerReady : int = 0
 var saveDataPath : String = "res://Resources/data.tres"
 var world2D : World
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Display.visible = false
 	character_selection.playersAreReady.connect(gameStart)
 func gameStart(stats: Array, atlases: Array[AtlasTexture]) -> void:
@@ -35,6 +36,7 @@ func gameStart(stats: Array, atlases: Array[AtlasTexture]) -> void:
 		players[i].setStat(Player.STATS.TECHNIQUE, stats[i][2])
 		players[i].setAtlas(atlases[i])
 		players[i].statsChanged.emit(players[i].stats)
+		players[i].dashUsed.connect(playerScreens[i].statPanel.startRechargeBarCooldown)
 	$Display.show()
 	character_selection.queue_free()
 	$gameWideFade.play_backwards("fade")

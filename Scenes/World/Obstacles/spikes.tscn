@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpfelh2d1xxam"]
 
-[ext_resource type="PackedScene" uid="uid://cm4xspk67teav" path="res://Scenes/World/hazardArea.tscn" id="1_de4gd"]
+[ext_resource type="PackedScene" uid="uid://cm4xspk67teav" path="res://Scenes/World/Obstacles/hazardArea.tscn" id="1_de4gd"]
 [ext_resource type="Script" uid="uid://qj8m7sskbaoq" path="res://Scripts/World/spikes.gd" id="1_uorgo"]
 [ext_resource type="Texture2D" uid="uid://c4l2qrx1jmtos" path="res://Assets/Misc/spikes_trap.png" id="2_uorgo"]
 

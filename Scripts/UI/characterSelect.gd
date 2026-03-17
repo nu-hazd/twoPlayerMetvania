@@ -8,8 +8,8 @@ var currentControl : Control = null
 var playerSkins : AtlasTexture 
 var skinSpriteSheetSize : int
 var currentSkin : int = 0
-var availablePoints : int = 30
-var spentPointDistribution : Array[int] = [1,1,1]
+var availablePoints : int = 1
+var spentPointDistribution : Array[int] = [50,50,50]
 enum ACTIONS {
 	UP, DOWN, LEFT, RIGHT, ACCEPT
 }
@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 		actionPressed(ACTIONS.RIGHT)
 	elif Input.is_action_just_pressed(controls.jump):
 		actionPressed(ACTIONS.ACCEPT)
+
 
 func actionPressed(action : ACTIONS):
 	match action:

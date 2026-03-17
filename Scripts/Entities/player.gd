@@ -1,21 +1,27 @@
 extends StatEntity
+##
+##	[StatEntity] controlled by an array of [InputEventAction] within a [PlayerControls].
+##
+##	Contains a [WeaponArmory] and utilizes a [StateMachine] for movement and actions.
+##
 class_name Player
 
-var rom : Room
-@export var playerControls : PlayerControls
-@onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
-var playerScreen : PlayerScreen
-#enum STAT_MODIFIER {
-	#MAX_HEALTH, MAX_STAMINA, STAMINA_RECHARGE
-#}
-var playerName : String = "Rogue"
-var dashCooldown : float = 0.0
-var oneSecondInterval : float = 1.0
-var lastDirection : int = 1
-var usedDoubleJump : bool = false
-var wantsJump : float = 0.0
-var disableWalljump : float = 0
-var lastSafePos : Vector2
+signal dashUsed(cd : float)
+@export var playerControls : PlayerControls ## A [PlayerControls] resource that holds the string to an array of [InputEventAction]
+@onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D ## Node responsible for controlling [Camera2D] movement.
+
+var playerScreen : PlayerScreen ## A reference to the Player's [PlayerScreen]. Utilized for screen fades and UI.
+
+var lastDirection : int = 1 ## An [int] representing the last non-zero direction the player's [member velocity] was. Either 1 for right or -1 for left.
+var usedDoubleJump : bool = false ## Not to be confused with [member STATS.HAS_DOUBLE_JUMP], this value represents wheter the player has consumed their usage of the double-jump. This value is reset upon Player touching the ground or touching a wall (must have [member STATS.HAS_WALL_JUMP]).
+
+var dashCooldown : float = 0.0 ## Value acting as a timer. Is ticked down by [method tickCooldowns]. 
+var oneSecondInterval : float = 1.0 ## Value acting as a one second timer. Is ticked down by [method tickCooldowns]. 
+var wantsJump : float = 0.0 ## A jump buffer set to a non-zero decimal value upon a jump [InputEventAction].  Is ticked down by [method tickCooldowns].
+var disableWalljump : float = 0 ## Value acting as a timer, where a positive non-zero value represents disabling the wall jump [RayCast2D] nodes.
+
+var lastSafePos : Vector2 ## A value representing the last safe [member global_position] the Player was in. It is set upon the Pl
+
 func _ready() -> void:
 	super._ready()
 	for state : PlayerState in $StateMachine.get_children():
@@ -39,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	tickCooldowns(delta)
 	state_machine.process(delta)
 
+## Called every physics frame. Reduces the value of all cooldown variables by [param delta].
 func tickCooldowns(delta : float) -> void:
 	dashCooldown = max(0, dashCooldown-delta)
 	iFrames = max(0, iFrames-delta)
@@ -48,9 +55,10 @@ func tickCooldowns(delta : float) -> void:
 	if oneSecondInterval == 0:
 		grantStamina(getStat(STATS.STAMINA_RECHARGE))
 		oneSecondInterval = 1
-
+## Update the [Sprite2D] texture. Utilized for diverse SpriteSheets.
 func setAtlas(newAtlas : AtlasTexture) -> void:
 	$Sprite2D.texture = newAtlas
+## Returns [member true] if [member STATS.HAS_DASH] is 1, [member dashCooldown] is 0 and [member STATS.CURRENT_STAMINA] is greater than 2.
 func canDash() -> bool:
 	return stats[STATS.HAS_DASH] != 0 and dashCooldown == 0.0 and getStat(STATS.CURRENT_STAMINA) >= 2
 func canWalljump() -> bool:

@@ -46,6 +46,17 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5ark"]
+bg_color = Color(2.3102762e-06, 0.6397023, 0.9339731, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpykh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -84,7 +95,7 @@ custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.1
-text = "Rogue"
+text = "Room Name"
 label_settings = SubResource("LabelSettings_khnck")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -107,6 +118,15 @@ size_flags_stretch_ratio = 0.2
 theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kkmkp")
 value = 27.93
+show_percentage = false
+
+[node name="dashRecharge" type="ProgressBar" parent="edge/informationListings" unique_id=1160255292]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_c7460")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n5ark")
 show_percentage = false
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="edge/informationListings" unique_id=1484695811]

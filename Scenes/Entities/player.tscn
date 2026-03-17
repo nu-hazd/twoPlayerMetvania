@@ -589,19 +589,23 @@ advance_condition = &"crouch"
 advance_mode = 2
 advance_condition = &"ground"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6fni"]
+advance_mode = 2
+advance_condition = &"crouch"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f1ek2"]
 states/air/node = SubResource("AnimationNodeBlendSpace1D_f1ek2")
 states/air/position = Vector2(469, 100)
 states/crouch/node = SubResource("AnimationNodeAnimation_p6fni")
-states/crouch/position = Vector2(312.66666, 18.333332)
+states/crouch/position = Vector2(201.33333, 218.11111)
 states/dash/node = SubResource("AnimationNodeAnimation_h4iuc")
 states/dash/position = Vector2(314, 219)
 states/ground/node = SubResource("AnimationNodeBlendSpace1D_8erm5")
 states/ground/position = Vector2(314, 100)
 states/wallCling/node = SubResource("AnimationNodeAnimation_fd4e3")
 states/wallCling/position = Vector2(469, 219)
-transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_x3wgy"), "ground", "air", SubResource("AnimationNodeStateMachineTransition_3smsa"), "air", "ground", SubResource("AnimationNodeStateMachineTransition_8erm5"), "ground", "dash", SubResource("AnimationNodeStateMachineTransition_fd4e3"), "air", "dash", SubResource("AnimationNodeStateMachineTransition_qqcod"), "dash", "ground", SubResource("AnimationNodeStateMachineTransition_igrcy"), "dash", "air", SubResource("AnimationNodeStateMachineTransition_fs7ks"), "wallCling", "air", SubResource("AnimationNodeStateMachineTransition_l6n3p"), "wallCling", "ground", SubResource("AnimationNodeStateMachineTransition_olqyp"), "wallCling", "dash", SubResource("AnimationNodeStateMachineTransition_wpjfl"), "air", "wallCling", SubResource("AnimationNodeStateMachineTransition_bi64h"), "ground", "crouch", SubResource("AnimationNodeStateMachineTransition_w4uu0"), "crouch", "ground", SubResource("AnimationNodeStateMachineTransition_abjg5")]
-graph_offset = Vector2(200, 40)
+transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_x3wgy"), "ground", "air", SubResource("AnimationNodeStateMachineTransition_3smsa"), "air", "ground", SubResource("AnimationNodeStateMachineTransition_8erm5"), "ground", "dash", SubResource("AnimationNodeStateMachineTransition_fd4e3"), "air", "dash", SubResource("AnimationNodeStateMachineTransition_qqcod"), "dash", "ground", SubResource("AnimationNodeStateMachineTransition_igrcy"), "dash", "air", SubResource("AnimationNodeStateMachineTransition_fs7ks"), "wallCling", "air", SubResource("AnimationNodeStateMachineTransition_l6n3p"), "wallCling", "ground", SubResource("AnimationNodeStateMachineTransition_olqyp"), "wallCling", "dash", SubResource("AnimationNodeStateMachineTransition_wpjfl"), "air", "wallCling", SubResource("AnimationNodeStateMachineTransition_bi64h"), "ground", "crouch", SubResource("AnimationNodeStateMachineTransition_w4uu0"), "crouch", "ground", SubResource("AnimationNodeStateMachineTransition_abjg5"), "dash", "crouch", SubResource("AnimationNodeStateMachineTransition_p6fni")]
+graph_offset = Vector2(-164, 98)
 
 [sub_resource type="GDScript" id="GDScript_h4iuc"]
 script/source = "extends Panel
@@ -728,7 +732,7 @@ material = SubResource("ShaderMaterial_p6fni")
 collision_mask = 18
 script = ExtResource("1_v0iea")
 scalingCurves = Array[Curve]([ExtResource("2_3smsa"), ExtResource("3_7dp3o"), ExtResource("4_h4iuc"), ExtResource("5_fd4e3"), ExtResource("6_qqcod"), ExtResource("7_igrcy"), ExtResource("8_fs7ks"), ExtResource("9_l6n3p")])
-baseStats = Array[int]([0, 0, 0, 1, 1, 1, 10, 5, 1, 50, 100, 300, -175, 300, 0, 0, 0])
+baseStats = Array[int]([0, 0, 0, 50, 50, 50, 10, 5, 1, 50, 100, 300, -175, 300, 1, 1, 1])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2041854968]
 material = SubResource("ShaderMaterial_vbauc")
@@ -789,6 +793,8 @@ script = ExtResource("15_fd4e3")
 script = ExtResource("20_p6fni")
 metadata/_custom_type_script = "uid://crayfm0lp8geb"
 
+[node name="oneSecond" type="Timer" parent="StateMachine/crouch" unique_id=159478186]
+
 [node name="left" type="RayCast2D" parent="." unique_id=1267663689]
 target_position = Vector2(-11, 0)
 collision_mask = 16
@@ -824,3 +830,5 @@ text = "[table=2]
 
 [node name="hitAndHeal" type="AnimationPlayer" parent="." unique_id=1605298096]
 libraries/ = SubResource("AnimationLibrary_w4uu0")
+
+[connection signal="timeout" from="StateMachine/crouch/oneSecond" to="StateMachine/crouch" method="_on_one_second_timeout"]

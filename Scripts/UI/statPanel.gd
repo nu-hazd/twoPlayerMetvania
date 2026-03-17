@@ -2,11 +2,13 @@ extends Panel
 class_name StatPanel
 @export var weaponRechargeBars : Array[ProgressBar]
 @export var weaponIcons : Array[TextureRect]
+@onready var dash_recharge: ProgressBar = $edge/informationListings/dashRecharge
 var weaponCooldowns : Array[float] = [0.0,0.0]
-
+var dashCooldown : float = 0.0
 
 
 func _ready() -> void:
+	dash_recharge.modulate.a = 0
 	set_process(false)
 func startWeaponCooldown(weaponNumber : int, time : float) -> void:
 	if weaponNumber < 0 or weaponNumber > 1:
@@ -15,11 +17,21 @@ func startWeaponCooldown(weaponNumber : int, time : float) -> void:
 	weaponRechargeBars[weaponNumber].max_value = time
 	weaponRechargeBars[weaponNumber].value = time
 	set_process(true)
+func startRechargeBarCooldown(time : float) -> void:
+	dash_recharge.modulate.a = 1
+	dashCooldown = time
+	dash_recharge.max_value = dashCooldown
+	dash_recharge.value = dashCooldown
+	set_process(true)
 func _process(delta: float) -> void:
+	dashCooldown = max(0, dashCooldown- delta)
 	weaponCooldowns = [max(0,weaponCooldowns[0]-delta),max(0,weaponCooldowns[1]-delta)]
 	for i in range(2):
 		weaponRechargeBars[i].value = weaponCooldowns[i]
-	if not weaponCooldowns:
+	dash_recharge.value = dashCooldown
+	if not dashCooldown:
+		dash_recharge.modulate.a = 0
+	if not weaponCooldowns and not dashCooldown:
 		set_process(false)
 	
 func updateStatPanel(stats : Array[int]) -> void:

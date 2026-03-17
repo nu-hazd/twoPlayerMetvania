@@ -10,6 +10,5 @@ region = Rect2(224, 128, 32, 32)
 [resource]
 script = ExtResource("1_w1xj4")
 icon = SubResource("AtlasTexture_6csgf")
-tier = 1
 baseCooldown = 1.0
 metadata/_custom_type_script = "uid://b2vkijpdflr2l"
