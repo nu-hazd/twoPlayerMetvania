@@ -65,6 +65,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mhq47")
 script = ExtResource("1_lg0eq")
 controls = ExtResource("2_1t2i6")
 
+[node name="Label" type="Label" parent="." unique_id=1563296613]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 20.0
+offset_right = 210.0
+offset_bottom = 43.0
+text = "Tester mode active"
+
 [node name="skin" type="Button" parent="." unique_id=289537874]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1

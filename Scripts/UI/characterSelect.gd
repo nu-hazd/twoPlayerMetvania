@@ -3,6 +3,7 @@ class_name CharacterSelect
 signal readyChanged
 @export var controls : PlayerControls
 const playerSpriteSheet : Texture2D = preload("res://Assets/Entities/Player/playerColorSprites.png")
+const playtesterSprites : Texture2D = preload("res://Assets/Entities/Player/playTestSprites.png")
 var isReady : bool = false
 var currentControl : Control = null
 var playerSkins : AtlasTexture 
@@ -13,6 +14,11 @@ var spentPointDistribution : Array[int] = [50,50,50]
 enum ACTIONS {
 	UP, DOWN, LEFT, RIGHT, ACCEPT
 }
+
+var requiredActions : Array[int] = [0, 0, 1, 1, 2, 2, 3, 3] 
+var cheatCodeStack : Array[int]
+
+
 func _ready() -> void:
 	updateAttributeText()
 	currentControl = find_child("skin")
@@ -25,16 +31,40 @@ func _ready() -> void:
 	atlas.texture = playerSkins
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(controls.up):
+		pushStackAndCheck(0)
 		actionPressed(ACTIONS.UP)
 	elif Input.is_action_just_pressed(controls.down):
+		pushStackAndCheck(1)
 		actionPressed(ACTIONS.DOWN)
 	elif Input.is_action_just_pressed(controls.left):
+		pushStackAndCheck(2)
 		actionPressed(ACTIONS.LEFT)
 	elif Input.is_action_just_pressed(controls.right):
+		pushStackAndCheck(3)
 		actionPressed(ACTIONS.RIGHT)
 	elif Input.is_action_just_pressed(controls.jump):
+		pushStackAndCheck(4)
 		actionPressed(ACTIONS.ACCEPT)
 
+func togglePlayTestSprites() -> void:
+	$Label.visible = true
+	currentSkin = 0
+	availablePoints += 30
+	skinSpriteSheetSize = 4
+	playerSkins = AtlasTexture.new()
+	playerSkins.atlas = playtesterSprites
+	playerSkins.region = Rect2(0, 0, 32, 32)
+	var rect : TextureRect = $skin/atlas
+	rect.texture = playerSkins
+func pushStackAndCheck(action : int) -> void:
+	cheatCodeStack.push_back(action)
+	print(cheatCodeStack)
+	if cheatCodeStack.size() > requiredActions.size():
+		cheatCodeStack.clear()
+	elif cheatCodeStack[cheatCodeStack.size()-1] != requiredActions[cheatCodeStack.size()-1]:
+		cheatCodeStack.clear()
+	if cheatCodeStack.size() == requiredActions.size():
+		togglePlayTestSprites()
 
 func actionPressed(action : ACTIONS):
 	match action:
@@ -107,6 +137,5 @@ func changeCurrentControl(newControl : Control) -> void:
 	currentControl.scale = Vector2(1,1)
 	currentControl = newControl
 	currentControl.scale = Vector2(1.25,1.25)
-
 func updateDisplay() -> void:
 	pass

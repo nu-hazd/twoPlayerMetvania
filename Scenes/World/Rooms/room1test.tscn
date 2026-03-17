@@ -93,8 +93,23 @@ position = Vector2(45, 43)
 scale = Vector2(0.53930384, 0.80070114)
 
 [node name="Spikes" parent="middle/spikes" parent_id_path=PackedInt32Array(2015315501) index="0" unique_id=182961983 instance=ExtResource("3_x1fji")]
-position = Vector2(264, 234)
-length = 80.0
+position = Vector2(231, 233)
+isAbbys = true
+
+[node name="Spikes2" parent="middle/spikes" parent_id_path=PackedInt32Array(2015315501) index="1" unique_id=1868266929 instance=ExtResource("3_x1fji")]
+position = Vector2(247, 233)
+isAbbys = true
+
+[node name="Spikes3" parent="middle/spikes" parent_id_path=PackedInt32Array(2015315501) index="2" unique_id=1685625125 instance=ExtResource("3_x1fji")]
+position = Vector2(263, 233)
+isAbbys = true
+
+[node name="Spikes4" parent="middle/spikes" parent_id_path=PackedInt32Array(2015315501) index="3" unique_id=1508496023 instance=ExtResource("3_x1fji")]
+position = Vector2(279, 233)
+isAbbys = true
+
+[node name="Spikes5" parent="middle/spikes" parent_id_path=PackedInt32Array(2015315501) index="4" unique_id=656578113 instance=ExtResource("3_x1fji")]
+position = Vector2(295, 233)
 isAbbys = true
 
 [node name="tempModifiers" type="Node2D" parent="middle" parent_id_path=PackedInt32Array(1735406811) index="2" unique_id=470692173]

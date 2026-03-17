@@ -8,7 +8,6 @@ var playerReady : int = 0
 var saveDataPath : String = "res://Resources/data.tres"
 var world2D : World
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Display.visible = false
 	character_selection.playersAreReady.connect(gameStart)
 func gameStart(stats: Array, atlases: Array[AtlasTexture]) -> void:

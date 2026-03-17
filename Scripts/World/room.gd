@@ -13,10 +13,11 @@ var boundaries : Vector4i
 
 
 func _ready() -> void:
-	boundaries[0] = $boundaries/topLeft.global_position.x
-	boundaries[1] = $boundaries/bottomRight.global_position.x
-	boundaries[2] = $boundaries/topLeft.global_position.y
-	boundaries[3] = $boundaries/bottomRight.global_position.y
+	boundaries = Vector4i(
+	$boundaries/topLeft.global_position.x,
+	$boundaries/bottomRight.global_position.x,
+	$boundaries/topLeft.global_position.y,
+	$boundaries/bottomRight.global_position.y)
 	for door : Door in doors:
 		door.parentRoom = self
 		door.playerEnteredDoor.connect(exitRoom)

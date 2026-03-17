@@ -20,7 +20,7 @@ func process(_delta : float) -> void:
 		player.usedDoubleJump = true
 		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)/1.3
 		player.consumeStamina(2)
-	if Input.is_action_just_pressed(player.playerControls.down):
+	if Input.is_action_pressed(player.playerControls.down):
 		player.velocity.y += player.getStat(Player.STATS.FAST_FALL)*_delta
 	if Input.is_action_just_pressed(player.playerControls.dash) && player.canDash():
 		nextState = $"../dash"

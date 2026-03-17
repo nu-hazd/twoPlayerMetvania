@@ -9,79 +9,79 @@
 
 [node name="world" type="Node2D" unique_id=549322314 node_paths=PackedStringArray("start_room")]
 script = ExtResource("1_yp2ti")
-start_room = NodePath("Rooms/room0")
+start_room = NodePath("Rooms/startRoom")
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1831701690]
 
-[node name="room0" parent="Rooms" unique_id=924014895 node_paths=PackedStringArray("doors") instance=ExtResource("2_vadfg")]
-doors = [NodePath("../../Doors/Lft-Mid")]
+[node name="startRoom" parent="Rooms" unique_id=727726301 node_paths=PackedStringArray("doors") instance=ExtResource("2_vadfg")]
+doors = [NodePath("Lft-Mid")]
 
-[node name="room1" parent="Rooms" unique_id=961431617 node_paths=PackedStringArray("doors") instance=ExtResource("3_l1hd3")]
-position = Vector2(320, 0)
-doors = [NodePath("../../Doors/Mid-Lft"), NodePath("../../Doors/lMid-Up"), NodePath("../../Doors/rMid-Up")]
-
-[node name="room2" parent="Rooms" unique_id=1785910203 node_paths=PackedStringArray("doors") instance=ExtResource("4_7staa")]
-position = Vector2(320, -48)
-doors = [NodePath("../../Doors/lUp-Mid"), NodePath("../../Doors/rUp-Mid")]
-
-[node name="Doors" type="Node2D" parent="." unique_id=256788492]
-
-[node name="Lft-Mid" parent="Doors" unique_id=919853113 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+[node name="Lft-Mid" parent="Rooms/startRoom" unique_id=1992533867 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
 position = Vector2(262, 216.00002)
 scale = Vector2(0.5946551, 2.5329316)
-targetDoor = NodePath("../Mid-Lft")
+targetDoor = NodePath("../../middleRoom/Mid-Lft")
 arrival_pos = NodePath("Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="Doors/Lft-Mid" unique_id=501385526]
+[node name="Marker2D" type="Marker2D" parent="Rooms/startRoom/Lft-Mid" unique_id=501385526]
 position = Vector2(-36.99623, 3.9479883)
 gizmo_extents = 16.0
 
-[node name="Mid-Lft" parent="Doors" unique_id=716753206 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(309, 216.00002)
+[node name="middleRoom" parent="Rooms" unique_id=961431617 node_paths=PackedStringArray("doors") instance=ExtResource("3_l1hd3")]
+position = Vector2(320, 0)
+doors = [NodePath("Mid-Lft"), NodePath("lMid-Up"), NodePath("rMid-Up")]
+
+[node name="Mid-Lft" parent="Rooms/middleRoom" unique_id=716753206 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(-11, 216.00002)
 scale = Vector2(0.65078586, 2.4674163)
 id = "one to zero"
-targetDoor = NodePath("../Lft-Mid")
+targetDoor = NodePath("../../startRoom/Lft-Mid")
 arrival_pos = NodePath("Marker2D2")
 
-[node name="Marker2D2" type="Marker2D" parent="Doors/Mid-Lft" unique_id=1337145372]
+[node name="Marker2D2" type="Marker2D" parent="Rooms/middleRoom/Mid-Lft" unique_id=1337145372]
 position = Vector2(36.87845, 4.052816)
 scale = Vector2(0.9137493, 1.0265522)
 
-[node name="lMid-Up" parent="Doors" unique_id=1261822324 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(376, -5)
+[node name="lMid-Up" parent="Rooms/middleRoom" unique_id=1261822324 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(56, -5)
 scale = Vector2(2.4015124, 0.51213366)
-targetDoor = NodePath("../lUp-Mid")
+targetDoor = NodePath("../../openRoom/lUp-Mid")
 arrival_pos = NodePath("Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="Doors/lMid-Up" unique_id=1199103433]
+[node name="Marker2D" type="Marker2D" parent="Rooms/middleRoom/lMid-Up" unique_id=1199103433]
 position = Vector2(-0.41640428, 46.862762)
 
-[node name="lUp-Mid" parent="Doors" unique_id=61239846 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(376, -71)
-scale = Vector2(2.4015124, 0.51213366)
-targetDoor = NodePath("../lMid-Up")
-arrival_pos = NodePath("Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="Doors/lUp-Mid" unique_id=760872118]
-position = Vector2(0, -46.86277)
-
-[node name="rMid-Up" parent="Doors" unique_id=700663277 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(928, -7)
+[node name="rMid-Up" parent="Rooms/middleRoom" unique_id=700663277 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(608, -7)
 scale = Vector2(3.153583, 0.6443882)
-targetDoor = NodePath("../rUp-Mid")
+targetDoor = NodePath("../../openRoom/rUp-Mid")
 arrival_pos = NodePath("Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="Doors/rMid-Up" unique_id=1241860547]
+[node name="Marker2D" type="Marker2D" parent="Rooms/middleRoom/rMid-Up" unique_id=1241860547]
 position = Vector2(-0.41640428, 46.862762)
 
-[node name="rUp-Mid" parent="Doors" unique_id=238608070 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
-position = Vector2(928, -52)
-scale = Vector2(3.153583, 0.6443882)
-targetDoor = NodePath("../rMid-Up")
+[node name="openRoom" parent="Rooms" unique_id=1785910203 node_paths=PackedStringArray("doors") instance=ExtResource("4_7staa")]
+position = Vector2(320, -48)
+doors = [NodePath("lUp-Mid"), NodePath("rUp-Mid")]
+
+[node name="lUp-Mid" parent="Rooms/openRoom" unique_id=61239846 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(56, -23)
+scale = Vector2(2.4015124, 0.51213366)
+targetDoor = NodePath("../../middleRoom/lMid-Up")
 arrival_pos = NodePath("Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="Doors/rUp-Mid" unique_id=685837523]
+[node name="Marker2D" type="Marker2D" parent="Rooms/openRoom/lUp-Mid" unique_id=760872118]
 position = Vector2(0, -46.86277)
+
+[node name="rUp-Mid" parent="Rooms/openRoom" unique_id=238608070 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(608, -4)
+scale = Vector2(3.153583, 0.6443882)
+targetDoor = NodePath("../../middleRoom/rMid-Up")
+arrival_pos = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Rooms/openRoom/rUp-Mid" unique_id=685837523]
+position = Vector2(0, -46.86277)
+
+[node name="Doors" type="Node2D" parent="." unique_id=256788492]
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="." unique_id=2055467407]
 stream = ExtResource("5_l1hd3")

@@ -4,21 +4,20 @@
 [ext_resource type="Script" uid="uid://qj8m7sskbaoq" path="res://Scripts/World/spikes.gd" id="1_uorgo"]
 [ext_resource type="Texture2D" uid="uid://c4l2qrx1jmtos" path="res://Assets/Misc/spikes_trap.png" id="2_uorgo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_akbjl"]
-size = Vector2(128, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akyla"]
+size = Vector2(16, 16)
 
 [node name="spikes" unique_id=1868266929 instance=ExtResource("1_de4gd")]
 collision_mask = 3
 script = ExtResource("1_uorgo")
 length = 128.0
-height = 16.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1485143261]
 texture_repeat = 2
 scale = Vector2(1, -1)
 texture = ExtResource("2_uorgo")
 region_enabled = true
-region_rect = Rect2(0, 0, 128, 16)
+region_rect = Rect2(0, 0, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=477408984]
-shape = SubResource("RectangleShape2D_akbjl")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1839100279]
+shape = SubResource("RectangleShape2D_akyla")

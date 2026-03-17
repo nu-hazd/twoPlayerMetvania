@@ -3,8 +3,8 @@ class_name HazardArea
 @export var isAbbys: bool = false
 @export var areaDamage : int = 5
 @export var knockBack : int = 200
-func _ready() -> void:
-	self.body_entered.connect(_on_body_entered)
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.iFrames = 0

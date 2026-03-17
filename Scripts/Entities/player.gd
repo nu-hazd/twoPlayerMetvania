@@ -6,6 +6,7 @@ extends StatEntity
 ##
 class_name Player
 
+@warning_ignore("unused_signal")
 signal dashUsed(cd : float)
 @export var playerControls : PlayerControls ## A [PlayerControls] resource that holds the string to an array of [InputEventAction]
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D ## Node responsible for controlling [Camera2D] movement.
