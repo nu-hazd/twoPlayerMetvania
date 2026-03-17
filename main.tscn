@@ -97,6 +97,13 @@ grow_vertical = 2
 
 [node name="characterSelection" parent="." unique_id=1731230855 instance=ExtResource("5_lquwl")]
 
+[node name="Label" type="Label" parent="." unique_id=3628800]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 31.0
+text = "alpha 1.5"
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1300499260]
 
 [node name="gameWideFade" type="AnimationPlayer" parent="." unique_id=572465419]
