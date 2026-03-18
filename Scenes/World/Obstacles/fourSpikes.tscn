@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://o2qc6cmq08gs"]
+
+[ext_resource type="PackedScene" uid="uid://cm4xspk67teav" path="res://Scenes/World/Obstacles/hazardArea.tscn" id="1_l0bvh"]
+[ext_resource type="Script" uid="uid://qj8m7sskbaoq" path="res://Scripts/World/spikes.gd" id="2_1arhb"]
+[ext_resource type="Texture2D" uid="uid://c4l2qrx1jmtos" path="res://Assets/Misc/spikes_trap.png" id="3_snvs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akyla"]
+size = Vector2(64, 16)
+
+[node name="spikes" unique_id=1868266929 instance=ExtResource("1_l0bvh")]
+collision_mask = 3
+script = ExtResource("2_1arhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1485143261]
+texture_repeat = 2
+scale = Vector2(1, -1)
+texture = ExtResource("3_snvs1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1" unique_id=1292078235]
+texture_repeat = 2
+position = Vector2(16, 0)
+scale = Vector2(1, -1)
+texture = ExtResource("3_snvs1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="2" unique_id=839066382]
+texture_repeat = 2
+position = Vector2(32, 0)
+scale = Vector2(1, -1)
+texture = ExtResource("3_snvs1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="3" unique_id=674867124]
+texture_repeat = 2
+position = Vector2(-16, 0)
+scale = Vector2(1, -1)
+texture = ExtResource("3_snvs1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1839100279]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_akyla")

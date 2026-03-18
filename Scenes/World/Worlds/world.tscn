@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://by82oh8gbrhma" path="res://Scenes/World/Rooms/room2test.tscn" id="4_7staa"]
 [ext_resource type="PackedScene" uid="uid://cpgu6y3pv7lpc" path="res://Scenes/World/Obstacles/door.tscn" id="4_adcqc"]
 [ext_resource type="AudioStream" uid="uid://dpdpnqfvrk6si" path="res://Assets/Sound/Music/overworld.mp3" id="5_l1hd3"]
+[ext_resource type="PackedScene" uid="uid://y52vm7s5pp5e" path="res://Scenes/World/Rooms/room3test.tscn" id="6_3gkby"]
 
 [node name="world" type="Node2D" unique_id=549322314 node_paths=PackedStringArray("start_room")]
 script = ExtResource("1_yp2ti")
@@ -14,7 +15,7 @@ start_room = NodePath("Rooms/startRoom")
 [node name="Rooms" type="Node2D" parent="." unique_id=1831701690]
 
 [node name="startRoom" parent="Rooms" unique_id=727726301 node_paths=PackedStringArray("doors") instance=ExtResource("2_vadfg")]
-doors = [NodePath("Lft-Mid")]
+doors = [NodePath("Lft-Mid"), NodePath("startToPlatformer")]
 
 [node name="Lft-Mid" parent="Rooms/startRoom" unique_id=1992533867 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
 position = Vector2(262, 216.00002)
@@ -24,6 +25,17 @@ arrival_pos = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="Rooms/startRoom/Lft-Mid" unique_id=501385526]
 position = Vector2(-36.99623, 3.9479883)
+gizmo_extents = 16.0
+
+[node name="startToPlatformer" parent="Rooms/startRoom" unique_id=919853113 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(48.000004, 0)
+rotation = -1.5707964
+scale = Vector2(0.5830006, 3.1553688)
+targetDoor = NodePath("../../platformerRood/platformerToStart")
+arrival_pos = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Rooms/startRoom/startToPlatformer" unique_id=570530614]
+position = Vector2(-53.81146, -0.085956335)
 gizmo_extents = 16.0
 
 [node name="middleRoom" parent="Rooms" unique_id=961431617 node_paths=PackedStringArray("doors") instance=ExtResource("3_l1hd3")]
@@ -81,7 +93,19 @@ arrival_pos = NodePath("Marker2D")
 [node name="Marker2D" type="Marker2D" parent="Rooms/openRoom/rUp-Mid" unique_id=685837523]
 position = Vector2(0, -46.86277)
 
-[node name="Doors" type="Node2D" parent="." unique_id=256788492]
+[node name="platformerRood" parent="Rooms" unique_id=924014895 node_paths=PackedStringArray("doors") instance=ExtResource("6_3gkby")]
+doors = [NodePath("platformerToStart")]
+
+[node name="platformerToStart" parent="Rooms/platformerRood" unique_id=121258214 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(47, -29)
+rotation = 1.5707964
+scale = Vector2(0.3799992, 3.217591)
+targetDoor = NodePath("../../startRoom/startToPlatformer")
+arrival_pos = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Rooms/platformerRood/platformerToStart" unique_id=737955720]
+position = Vector2(-76.31595, 4.7683716e-07)
+gizmo_extents = 16.0
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="." unique_id=2055467407]
 stream = ExtResource("5_l1hd3")

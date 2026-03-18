@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemInfo" format=3 uid="uid://bagap54vi457u"]
+
+[ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="1_ljlg3"]
+
+[resource]
+script = ExtResource("1_ljlg3")
+coords = Vector2(64, 32)
+type = 1
+scale = Vector2(0.4, 0.4)
+mass = 0.125
+metadata/_custom_type_script = "uid://cvqc8vangqv4d"

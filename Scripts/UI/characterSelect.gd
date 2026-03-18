@@ -49,11 +49,13 @@ func _process(_delta: float) -> void:
 func togglePlayTestSprites() -> void:
 	$Label.visible = true
 	currentSkin = 0
-	availablePoints += 30
+	availablePoints = 72
+	spentPointDistribution = [50,50,50]
 	skinSpriteSheetSize = 4
 	playerSkins = AtlasTexture.new()
 	playerSkins.atlas = playtesterSprites
 	playerSkins.region = Rect2(0, 0, 32, 32)
+	updateAttributeText()
 	var rect : TextureRect = $skin/atlas
 	rect.texture = playerSkins
 func pushStackAndCheck(action : int) -> void:

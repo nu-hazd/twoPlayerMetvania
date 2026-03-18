@@ -5,8 +5,11 @@ extends Node2D
 class_name Room
 #signal PlayerDied
 
+
 @onready var enemy_manager: Node2D = $EnemyManager
-@onready var projectiles: Node2D = $Projectiles
+@onready var rigid_bodies : Node2D = $RigidBodies
+@onready var item_spawner: ItemSpawner = $ItemSpawner
+@onready var chests: Node2D = $Chests
 @export var doors: Array[Door] 
 @onready var players: Node2D = $Players
 var boundaries : Vector4i
@@ -21,6 +24,9 @@ func _ready() -> void:
 	for door : Door in doors:
 		door.parentRoom = self
 		door.playerEnteredDoor.connect(exitRoom)
+	for chest : Chest in chests.get_children():
+		chest.spawnItems.connect(item_spawner.spawnItems)
+	item_spawner.rigidBodyNode = rigid_bodies
 func exitRoom(player : Player, destinationDoor : Door) -> void:
 	player.set_physics_process(false)
 	players.remove_child(player)

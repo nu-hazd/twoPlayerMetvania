@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://bgeygvni56tea"]
+
+[ext_resource type="Script" uid="uid://bcbirgysevosh" path="res://Scripts/Items/itemPickup.gd" id="1_a2xht"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mywr3"]
+load_path = "res://.godot/imported/coins-chests-etc-2-0-noborders.png-50bc7c88267dc673a9627b8084695094.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vrtd"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mywr3"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mywr3"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_a2xht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pickupRange/sprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pickupRange/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pickupRange/sprite:region_rect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(96, 16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pickupRange/sprite:offset:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wmlpi"]
+resource_name = "coins"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pickupRange/sprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pickupRange/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pickupRange/sprite:region_rect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(96, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_8vrtd"]
+resource_name = "ups"
+length = 0.4
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pickupRange/sprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pickupRange/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pickupRange/sprite:offset:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-5.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pickupRange/sprite:region_rect:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(64, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymixj"]
+_data = {
+&"RESET": SubResource("Animation_a2xht"),
+&"coins": SubResource("Animation_wmlpi"),
+&"ups": SubResource("Animation_8vrtd")
+}
+
+[node name="ItemPickup" type="RigidBody2D" unique_id=297668104]
+collision_layer = 0
+collision_mask = 16
+gravity_scale = 0.33
+lock_rotation = true
+script = ExtResource("1_a2xht")
+
+[node name="pickupRange" type="Area2D" parent="." unique_id=56420475]
+collision_layer = 0
+
+[node name="sprite" type="Sprite2D" parent="pickupRange" unique_id=1331551394]
+texture = SubResource("CompressedTexture2D_mywr3")
+region_enabled = true
+region_rect = Rect2(528, 192, 96, 16)
+region_filter_clip_enabled = true
+
+[node name="pickupRangeCollsion" type="CollisionShape2D" parent="pickupRange" unique_id=1423221648]
+shape = SubResource("CircleShape2D_8vrtd")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1323689616]
+shape = SubResource("RectangleShape2D_mywr3")
+
+[node name="gravitateRange" type="Area2D" parent="." unique_id=262218505]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gravitateRange" unique_id=803767789]
+shape = SubResource("CircleShape2D_mywr3")
+
+[node name="anims" type="AnimationPlayer" parent="." unique_id=136788728]
+libraries/ = SubResource("AnimationLibrary_ymixj")
+
+[connection signal="body_entered" from="pickupRange" to="." method="_on_pickup_range_body_entered"]
+[connection signal="body_entered" from="gravitateRange" to="." method="_on_gravitate_range_body_entered"]
+[connection signal="body_exited" from="gravitateRange" to="." method="_on_gravitate_range_body_exited"]

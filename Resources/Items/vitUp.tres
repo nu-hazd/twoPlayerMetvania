@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemInfo" format=3 uid="uid://uh6vdo023ppi"]
+
+[ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="1_pcvqj"]
+
+[resource]
+script = ExtResource("1_pcvqj")
+coords = Vector2(528, 240)
+type = 4
+mass = 0.3
+metadata/_custom_type_script = "uid://cvqc8vangqv4d"

@@ -38,7 +38,6 @@ func setStat(stat : STATS, newValue : int) -> void:
 func improveAttribute(attribute : STATS, amount : int) -> void:
 	if attribute in [STATS.VITALITY, STATS.AGILITY, STATS.TECHNIQUE]:
 		self.setStat(attribute, clampi(getStat(attribute)+amount,0,100))
-		updateStats()
 	else:
 		push_warning("Improve Attribute function took in non-attribute STAT value #%f" % attribute)
 func heal(amount : int) -> void:

@@ -66,13 +66,12 @@ func canWalljump() -> bool:
 	return stats[STATS.HAS_WALL_JUMP] && not disableWalljump
 func canDoubleJump() -> bool:
 	return stats[STATS.HAS_DOUBLE_JUMP] and getStat(STATS.CURRENT_STAMINA) >= 2 and not usedDoubleJump
-func randomizeStats() -> void:
-	setStat(STATS.HAS_DASH, 1)
-	setStat(STATS.HAS_DOUBLE_JUMP, 1)
-	setStat(STATS.HAS_WALL_JUMP, 1)
-	improveAttribute(STATS.VITALITY, randi_range(0, 10))
-	improveAttribute(STATS.TECHNIQUE, randi_range(0, 10))
-	improveAttribute(STATS.AGILITY, 0)
+func getCoins() -> int:
+	return getStat(STATS.SOULS)
+func giveCoins(amount : int) -> void:
+	setStat(STATS.SOULS, getStat(STATS.SOULS)+amount)
+func takeCoins(amount : int) -> void:
+	setStat(STATS.SOULS, max(0, STATS.SOULS - amount))
 func setCameraLimits(boundaries : Vector4i) -> void:
 	var camera : Camera2D = playerScreen.player_cam
 	camera.limit_left = boundaries[0]
