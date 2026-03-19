@@ -11,7 +11,6 @@ var origin : Vector2 = Vector2(16,544)
 signal spawnItems(pos : Vector2, items :  Dictionary[ItemInfo,int])
 
 func _ready() -> void:
-	var spriteRegion : Rect2 = $Sprite2D.region_rect
 	match tier:
 		TIER.COMMON:
 			origin =  Vector2(16,544)

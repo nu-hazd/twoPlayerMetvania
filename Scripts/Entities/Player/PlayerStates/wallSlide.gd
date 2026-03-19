@@ -22,7 +22,7 @@ func process(_delta : float) -> void:
 	elif player.wantsJump and player.getStat(Player.STATS.CURRENT_STAMINA) >=1:
 		player.consumeStamina(2)
 		player.wantsJump = 0
-		player.velocity = Vector2(-sign(collidingWithWalls) * player.getStat(Player.STATS.GROUND_SPEED), player.getStat(Player.STATS.JUMP_POWER))
+		player.velocity = Vector2(-sign(collidingWithWalls) * player.getStat(Player.STATS.GROUND_SPEED)/1.5, player.getStat(Player.STATS.JUMP_POWER))
 		nextState = $"../air"
 	elif Input.is_action_just_pressed(player.playerControls.dash) and player.canDash() and Input.get_axis(player.playerControls.left,player.playerControls.right) != enterWallDir:
 		nextState = $"../dash"

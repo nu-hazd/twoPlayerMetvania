@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="7_f3nuv"]
 [ext_resource type="Resource" uid="uid://uh6vdo023ppi" path="res://Resources/Items/vitUp.tres" id="8_tuybb"]
 [ext_resource type="Resource" uid="uid://b06tniljqa685" path="res://Resources/Items/agiUp.tres" id="9_oi4ds"]
+[ext_resource type="PackedScene" uid="uid://et1wsgc8jng3" path="res://Scenes/Entities/Enemies/Wandering/mushroom.tscn" id="10_f3nuv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qc28u"]
 load_path = "res://.godot/imported/bg_01_garden.png-b4a124f2e97223b95785021ba37991b9.ctex"
@@ -116,6 +117,22 @@ scale = Vector2(0.53930384, 0.80070114)
 position = Vector2(45, 43)
 scale = Vector2(0.53930384, 0.80070114)
 
+[node name="Chest" parent="Chests" parent_id_path=PackedInt32Array(436153108) index="0" unique_id=532521167 instance=ExtResource("6_n8138")]
+position = Vector2(664, 104)
+type = 1
+tier = 2
+droppedItems = Dictionary[ExtResource("7_f3nuv"), int]({
+ExtResource("8_tuybb"): 5
+})
+
+[node name="Chest2" parent="Chests" parent_id_path=PackedInt32Array(436153108) index="1" unique_id=1007622538 instance=ExtResource("6_n8138")]
+position = Vector2(27, 88)
+type = 3
+tier = 1
+droppedItems = Dictionary[ExtResource("7_f3nuv"), int]({
+ExtResource("9_oi4ds"): 3
+})
+
 [node name="tempModifiers" type="Node2D" parent="middle" parent_id_path=PackedInt32Array(1735406811) index="0" unique_id=470692173]
 position = Vector2(104, 323)
 script = SubResource("GDScript_qc28u")
@@ -152,21 +169,8 @@ texture = ExtResource("4_vebe1")
 region_enabled = true
 region_rect = Rect2(37, 66.23442, 22, 26.76558)
 
-[node name="Chest" parent="Chests" parent_id_path=PackedInt32Array(436153108) index="0" unique_id=532521167 instance=ExtResource("6_n8138")]
-position = Vector2(664, 104)
-type = 1
-tier = 2
-droppedItems = Dictionary[ExtResource("7_f3nuv"), int]({
-ExtResource("8_tuybb"): 5
-})
-
-[node name="Chest2" parent="Chests" parent_id_path=PackedInt32Array(436153108) index="1" unique_id=1007622538 instance=ExtResource("6_n8138")]
-position = Vector2(27, 88)
-type = 3
-tier = 1
-droppedItems = Dictionary[ExtResource("7_f3nuv"), int]({
-ExtResource("9_oi4ds"): 3
-})
+[node name="mushroom" parent="EnemyManager" parent_id_path=PackedInt32Array(30584525) index="0" unique_id=449371144 instance=ExtResource("10_f3nuv")]
+position = Vector2(422, 106)
 
 [node name="front" parent="." index="9" unique_id=1312838953]
 tile_map_data = PackedByteArray("AAAaAAgAAAABAAEAAAAZAAgAAAABAAEAAAAaAAkAAAABAAEAAAAbAAkAAAABAAEAAAAbAAgAAAABAAEAAAAaAAcAAAABAAAAAAAbAAcAAAABAAAAAAAcAAcAAAABAAAAAAAdAAcAAAABAAAAAAAZAAkAAAABAAEAAAAcAAgAAAABAAEAAAA=")

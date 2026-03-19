@@ -28,9 +28,9 @@ func process(_delta : float) -> void:
 			player.position.y +=1
 	var dirX : float = Input.get_axis(player.playerControls.left,player.playerControls.right)
 	if dirX:
-		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.GROUND_SPEED), groundAcceleration)
+		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.GROUND_SPEED), groundAcceleration * (1 + player.getStat(Player.STATS.AGILITY)/50.0))
 	else:
-		player.velocity.x = lerp(player.velocity.x, 0.0, groundFriction)
+		player.velocity.x = lerp(player.velocity.x, 0.0, groundFriction * (1 + player.getStat(Player.STATS.AGILITY)/50.0))
 	animHandler.set("parameters/ground/blend_position", player.velocity.x)
 	player.move_and_slide()
 

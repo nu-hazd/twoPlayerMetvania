@@ -3,6 +3,7 @@ class_name StatEntity
 
 @export var scalingCurves : Array[Curve] = []
 @onready var weapon_armory: WeaponArmory = $WeaponArmory
+
 @onready var state_machine: StateMachine = $StateMachine
 signal statsChanged(newStats : Array[int])
 enum STATS {
@@ -24,6 +25,9 @@ var stats : Array[int]
 var iFrames : float = 0.0
 
 func _ready() -> void:
+	var spr : Sprite2D = $Sprite2D
+	var mat : ShaderMaterial = spr.material
+	mat.set_shader_parameter("enabled",false)
 	stats = baseStats.duplicate(true)
 	updateStats()
 	weapon_armory.initSystem()
@@ -71,6 +75,5 @@ func updateStats() -> void:
 	stats[STATS.GROUND_SPEED] = baseStats[STATS.GROUND_SPEED] + int(scalingCurves[3].sample(stats[STATS.AGILITY]))
 	stats[STATS.AIR_SPEED] =baseStats[STATS.AIR_SPEED] + int(scalingCurves[4].sample(stats[STATS.AGILITY]))
 	stats[STATS.FAST_FALL] =baseStats[STATS.FAST_FALL] + int(scalingCurves[5].sample(stats[STATS.AGILITY]))
-	stats[STATS.JUMP_POWER] = baseStats[STATS.JUMP_POWER] - int(scalingCurves[6].sample(stats[STATS.AGILITY]))
 	stats[STATS.DASH_COOLDOWN] = baseStats[STATS.DASH_COOLDOWN] - int((100*scalingCurves[7].sample(stats[STATS.AGILITY])))
 	statsChanged.emit(stats)

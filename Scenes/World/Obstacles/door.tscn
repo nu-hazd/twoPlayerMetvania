@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0flh"]
 
 [node name="Door" type="Area2D" unique_id=919853113]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_s0flh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=560475975]

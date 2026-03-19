@@ -74,6 +74,16 @@ offset_right = 210.0
 offset_bottom = 43.0
 text = "Tester mode active"
 
+[node name="gobii" type="Label" parent="." unique_id=662541963]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 48.0
+offset_right = 210.0
+offset_bottom = 71.0
+text = "Gobii detected.
+HARD_MODE = true"
+
 [node name="skin" type="Button" parent="." unique_id=289537874]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1

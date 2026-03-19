@@ -9,8 +9,8 @@ var currentControl : Control = null
 var playerSkins : AtlasTexture 
 var skinSpriteSheetSize : int
 var currentSkin : int = 0
-var availablePoints : int = 1
-var spentPointDistribution : Array[int] = [50,50,50]
+var availablePoints : int = 17*3
+var spentPointDistribution : Array[int] = [33,33,33]
 enum ACTIONS {
 	UP, DOWN, LEFT, RIGHT, ACCEPT
 }
@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 func togglePlayTestSprites() -> void:
 	$Label.visible = true
 	currentSkin = 0
-	availablePoints = 72
+	availablePoints = 30
 	spentPointDistribution = [50,50,50]
 	skinSpriteSheetSize = 4
 	playerSkins = AtlasTexture.new()
@@ -81,11 +81,19 @@ func actionPressed(action : ACTIONS):
 		ACTIONS.LEFT:
 			if currentControl.name == "skin":
 				skinLeft()
+				if currentSkin == 1 and skinSpriteSheetSize == 4:
+					$gobii.visible = true
+				else:
+					$gobii.visible = false
 			elif int(currentControl.name) in [0,1,2]:
 				deductPoint(int(currentControl.name))
 		ACTIONS.RIGHT:
 			if currentControl.name == "skin":
 				skinRight()
+				if currentSkin == 1 and skinSpriteSheetSize == 4:
+					$gobii.visible = true
+				else:
+					$gobii.visible = false
 			elif int(currentControl.name) in [0,1,2]:
 				addPoint(int(currentControl.name))
 

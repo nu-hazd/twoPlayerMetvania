@@ -25,7 +25,8 @@ func _on_body_entered(body: Node2D) -> void:
 			$clearSecond.start()
 		$clear.start()
 		playerEnteredDoor.emit(body, targetDoor)
-
+	if body is Enemy:
+		body.startDeath()
 func _on_clear_timeout() -> void:
 	doNotInteract.pop_front()
 func _on_clear_second_timeout() -> void:

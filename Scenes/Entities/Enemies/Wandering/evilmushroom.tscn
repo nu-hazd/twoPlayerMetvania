@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://cq3kfmjolr6if"]
+
+[ext_resource type="PackedScene" uid="uid://2pft7r22afmw" path="res://Scenes/Entities/Enemies/Wandering/wanderingEnemy.tscn" id="1_w8hlj"]
+[ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="2_6c88x"]
+[ext_resource type="Resource" uid="uid://mb1cvi51q6mn" path="res://Resources/Items/smallCoin.tres" id="3_tadv6"]
+[ext_resource type="Resource" uid="uid://bagap54vi457u" path="res://Resources/Items/mediumCoin.tres" id="4_irvg8"]
+[ext_resource type="Resource" uid="uid://bxtfuifkc7rh5" path="res://Resources/Items/largeCoin.tres" id="5_irvg8"]
+[ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="5_tadv6"]
+[ext_resource type="Texture2D" uid="uid://dyn66qgo8wn0u" path="res://Assets/Entities/Enemies/mushroom/evilShroom.png" id="6_irvg8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mehcv"]
+shader = ExtResource("5_tadv6")
+shader_parameter/hitFlashColor = Color(0, 1, 0, 1)
+shader_parameter/enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74jwg"]
+size = Vector2(11, 13)
+
+[sub_resource type="Animation" id="Animation_b7541"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e0nym"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_74jwg"]
+resource_name = "wander"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lg7bb"]
+_data = {
+&"RESET": SubResource("Animation_b7541"),
+&"idle": SubResource("Animation_e0nym"),
+&"wander": SubResource("Animation_74jwg")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74jwg"]
+
+[node name="evilMushroom" unique_id=449371144 instance=ExtResource("1_w8hlj")]
+onDeatItemDrops = Dictionary[ExtResource("2_6c88x"), int]({
+ExtResource("3_tadv6"): 10,
+ExtResource("4_irvg8"): 5,
+ExtResource("5_irvg8"): 1
+})
+baseStats = Array[int]([0, 0, 0, 1, 1, 20, 25, 5, 1, 25, 100, 300, -125, 300, 0, 0, 0])
+
+[node name="Sprite2D" parent="." index="0" unique_id=1113159217]
+material = SubResource("ShaderMaterial_mehcv")
+texture = ExtResource("6_irvg8")
+hframes = 8
+vframes = 4
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1460129409]
+visible = false
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_74jwg")
+
+[node name="idle" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="0" unique_id=139185438]
+idleTimeRange = Vector2(1, 1)
+idleNoticeTime = 0.5
+
+[node name="wander" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="1" unique_id=343324037]
+wanderTimeRange = Vector2(1, 1)
+wanderNoticeTime = 0.25
+
+[node name="chase" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="2" unique_id=1368463126]
+forgetTimeRange = Vector2(5, 5)
+chaseSpeedFactor = 3.0
+ignoreLedges = true
+
+[node name="animHandler" parent="." index="4" unique_id=2046782037]
+tree_root = null
+
+[node name="playerDetector" parent="." index="5" unique_id=1830655994]
+target_position = Vector2(24, 0)
+
+[node name="stateAnims" parent="." index="6" unique_id=1646831066]
+libraries/ = SubResource("AnimationLibrary_lg7bb")
+
+[node name="contactDamage" parent="." index="7" unique_id=1633311520]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="contactDamage" index="0" unique_id=834812540]
+shape = SubResource("CircleShape2D_74jwg")
+
+[node name="wallCheck" parent="." index="8" unique_id=1746028725]
+visible = false
+
+[node name="floorCheck" parent="." index="9" unique_id=65451808]
+visible = false
+
+[node name="healthBar" parent="." index="12" unique_id=1962810473]
+offset_left = -13.0
+offset_right = 13.0

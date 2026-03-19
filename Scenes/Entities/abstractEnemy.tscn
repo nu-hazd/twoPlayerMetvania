@@ -1,5 +1,196 @@
 [gd_scene format=3 uid="uid://c0jefutgqfd3r"]
 
 [ext_resource type="PackedScene" uid="uid://brtt7lk2y2cqf" path="res://Scenes/Entities/abstractEntity.tscn" id="1_vdjnl"]
+[ext_resource type="Script" uid="uid://b1ionv1cmxkk0" path="res://Scripts/Entities/enemy.gd" id="2_wc4qq"]
+[ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="3_c5ubr"]
+[ext_resource type="Script" uid="uid://71qadwe4ym10" path="res://Scripts/Entities/Enemies/enemyDeath.gd" id="4_vdeb4"]
+[ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="5_jjaxp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mehcv"]
+shader = ExtResource("5_jjaxp")
+shader_parameter/hitFlashColor = Color(0, 1, 0, 1)
+shader_parameter/enabled = true
+
+[sub_resource type="Animation" id="Animation_vdeb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deathParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_mehcv")]
+}
+
+[sub_resource type="Animation" id="Animation_jjaxp"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dead"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("deathParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:material")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvp8f"]
+_data = {
+&"RESET": SubResource("Animation_vdeb4"),
+&"death": SubResource("Animation_jjaxp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdjnl"]
+bg_color = Color(1, 0.34901962, 0.19607843, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc4qq"]
+bg_color = Color(1, 0, 0, 0.99215686)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="abstractEnemy" unique_id=449371144 instance=ExtResource("1_vdjnl")]
+collision_layer = 2
+script = ExtResource("2_wc4qq")
+onDeatItemDrops = Dictionary[ExtResource("3_c5ubr"), int]({})
+
+[node name="death" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="0" unique_id=537046766]
+script = ExtResource("4_vdeb4")
+metadata/_custom_type_script = "uid://ecp5iyp32a2f"
+
+[node name="deathAnim" type="AnimationPlayer" parent="." index="7" unique_id=1120204092]
+libraries/ = SubResource("AnimationLibrary_yvp8f")
+
+[node name="healthBar" type="ProgressBar" parent="." index="8" unique_id=1962810473]
+custom_minimum_size = Vector2(32, 20)
+offset_left = -62.0
+offset_top = -46.0
+offset_right = 62.0
+offset_bottom = -26.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+theme_override_styles/background = SubResource("StyleBoxFlat_vdjnl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wc4qq")
+value = 27.93
+show_percentage = false
+
+[node name="deathParticles" type="CPUParticles2D" parent="." index="9" unique_id=1200887160]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.33
+randomness = 0.33
+lifetime_randomness = 0.33
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 75.0
+color = Color(1, 0, 0, 1)

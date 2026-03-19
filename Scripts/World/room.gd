@@ -26,6 +26,8 @@ func _ready() -> void:
 		door.playerEnteredDoor.connect(exitRoom)
 	for chest : Chest in chests.get_children():
 		chest.spawnItems.connect(item_spawner.spawnItems)
+	for enemy : Enemy in enemy_manager.get_children():
+		enemy.enemyDied.connect(item_spawner.spawnItems)
 	item_spawner.rigidBodyNode = rigid_bodies
 func exitRoom(player : Player, destinationDoor : Door) -> void:
 	player.set_physics_process(false)
@@ -45,5 +47,9 @@ func softResetRoom() -> void:
 	pass
 func hardResetRoom() -> void:
 	pass
-func getPlayers() -> Array[Node]:
-	return self.players.get_children()
+func getPlayers() -> Array[Player]:
+	var returnVal : Array[Player]
+	for player in players.get_children():
+		if player is Player:
+			returnVal.push_back(player)
+	return returnVal

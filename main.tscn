@@ -102,7 +102,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 92.0
 offset_bottom = 31.0
-text = "alpha 1.5"
+text = "alpha 1.7"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1300499260]
 

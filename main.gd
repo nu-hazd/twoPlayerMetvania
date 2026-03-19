@@ -18,7 +18,7 @@ func gameStart(stats: Array, atlases: Array[AtlasTexture]) -> void:
 	playerScreens[0].player_viewport.add_child(world2D)
 	world2D.playBackgroundMusic()
 	playerScreens[1].player_viewport.world_2d = playerScreens[0].player_viewport.world_2d
-	var players : Array[Node] = world2D.start_room.getPlayers() 
+	var players : Array[Player] = world2D.start_room.getPlayers() 
 	for p in players:
 		if p is not Player:
 			push_error("Non player in start room players node.")

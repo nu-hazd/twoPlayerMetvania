@@ -11,14 +11,14 @@ func onEnter() -> void:
 func process(_delta : float) -> void:
 	var dirX : float = Input.get_axis(player.playerControls.left,player.playerControls.right)
 	if dirX:
-		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.AIR_SPEED), airAcceleration)
+		player.velocity.x = lerp(player.velocity.x, dirX * player.getStat(player.STATS.AIR_SPEED), airAcceleration *(1 + player.getStat(Player.STATS.AGILITY)/50.0))
 	else:
-		player.velocity.x = lerp(player.velocity.x, 0.0, airFriction)
+		player.velocity.x = lerp(player.velocity.x, 0.0, airFriction*(1 + player.getStat(Player.STATS.AGILITY)/50.0))
 	animHandler.set("parameters/air/blend_position",sign(player.velocity.y))
 	if player.wantsJump and player.canDoubleJump():
 		player.wantsJump = false
 		player.usedDoubleJump = true
-		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)/1.3
+		player.velocity.y = player.getStat(Player.STATS.JUMP_POWER)
 		player.consumeStamina(2)
 	if Input.is_action_pressed(player.playerControls.down):
 		player.velocity.y += player.getStat(Player.STATS.FAST_FALL)*_delta

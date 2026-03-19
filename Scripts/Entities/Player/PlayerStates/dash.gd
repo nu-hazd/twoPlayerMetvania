@@ -11,7 +11,7 @@ func onEnter() -> void:
 	player.dashUsed.emit(player.dashCooldown)
 	player.consumeStamina(5)
 	player.set_collision_mask_value(2, false)
-	player.iFrames = 0.25
+	player.iFrames = 0.25 * (1 + player.getStat(Player.STATS.AGILITY)/100.0)
 	player.velocity.y = 0
 	duration = dashDuration
 	enterDir = Input.get_axis(player.playerControls.left,player.playerControls.right)

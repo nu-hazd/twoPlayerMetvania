@@ -1,25 +1,25 @@
 [gd_scene format=3 uid="uid://7he3mygu118q"]
 
-[ext_resource type="Script" uid="uid://dc8xvvii0tt6r" path="res://Scripts/Entities/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dc8xvvii0tt6r" path="res://Scripts/Entities/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="1_vbauc"]
 [ext_resource type="Curve" uid="uid://cu6nh7con8fx3" path="res://Resources/PlayerStatScalingCurves/healthScaling.tres" id="2_3smsa"]
 [ext_resource type="Curve" uid="uid://bevnas8ol22tv" path="res://Resources/PlayerStatScalingCurves/staminaMaxScaling.tres" id="3_7dp3o"]
 [ext_resource type="Curve" uid="uid://nqbcu23t5hoq" path="res://Resources/PlayerStatScalingCurves/staminaRegenScaling.tres" id="4_h4iuc"]
 [ext_resource type="Script" uid="uid://5vmcjecrsuna" path="res://Scripts/stateMachine.gd" id="4_vgqql"]
 [ext_resource type="Curve" uid="uid://brodjqy8aescu" path="res://Resources/PlayerStatScalingCurves/groundSpeedScaling.tres" id="5_fd4e3"]
-[ext_resource type="Script" uid="uid://8tk0fx7psyj2" path="res://Scripts/PlayerStates/ground.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://8tk0fx7psyj2" path="res://Scripts/Entities/Player/PlayerStates/ground.gd" id="5_fkybt"]
 [ext_resource type="Curve" uid="uid://bwupyj83su" path="res://Resources/PlayerStatScalingCurves/airSpeedScaling.tres" id="6_qqcod"]
-[ext_resource type="Script" uid="uid://iffrv8vq8gal" path="res://Scripts/PlayerStates/air.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://iffrv8vq8gal" path="res://Scripts/Entities/Player/PlayerStates/air.gd" id="6_x3wgy"]
 [ext_resource type="Curve" uid="uid://cyek5oa3ofrya" path="res://Resources/PlayerStatScalingCurves/fastFallScaling.tres" id="7_igrcy"]
 [ext_resource type="Curve" uid="uid://buo3rdnk7j12n" path="res://Resources/PlayerStatScalingCurves/jumpPowerScaling.tres" id="8_fs7ks"]
 [ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/PlayerStatScalingCurves/dashCooldownScaling.tres" id="9_l6n3p"]
 [ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="11_fd4e3"]
-[ext_resource type="Texture2D" uid="uid://bewjoct8bd4ek" path="res://Assets/Entities/Player/playerColorSprites.png" id="11_vbauc"]
+[ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="11_p6fni"]
 [ext_resource type="PackedScene" uid="uid://3kpmf5gmmdmf" path="res://Scenes/Weapons/MeleeWeapons/meleeWeaponTemplate.tscn" id="12_udx2w"]
 [ext_resource type="PackedScene" uid="uid://8j63ko7ukfdn" path="res://Scenes/Weapons/MeleeWeapons/temp.tscn" id="13_aqs8i"]
-[ext_resource type="Script" uid="uid://cu0j8gkydkhou" path="res://Scripts/PlayerStates/wallSlide.gd" id="15_fd4e3"]
-[ext_resource type="Script" uid="uid://c7mbab3osw4ln" path="res://Scripts/PlayerStates/dash.gd" id="15_h4iuc"]
-[ext_resource type="Script" uid="uid://do3cn4aypgia6" path="res://Scripts/PlayerStates/crouch.gd" id="20_p6fni"]
+[ext_resource type="Script" uid="uid://cu0j8gkydkhou" path="res://Scripts/Entities/Player/PlayerStates/wallSlide.gd" id="15_fd4e3"]
+[ext_resource type="Script" uid="uid://c7mbab3osw4ln" path="res://Scripts/Entities/Player/PlayerStates/dash.gd" id="15_h4iuc"]
+[ext_resource type="Script" uid="uid://do3cn4aypgia6" path="res://Scripts/Entities/Player/PlayerStates/crouch.gd" id="20_p6fni"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p6fni"]
 shader = ExtResource("1_vbauc")
@@ -729,14 +729,14 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=1706995446]
 material = SubResource("ShaderMaterial_p6fni")
-collision_mask = 18
+collision_mask = 16
 script = ExtResource("1_v0iea")
 scalingCurves = Array[Curve]([ExtResource("2_3smsa"), ExtResource("3_7dp3o"), ExtResource("4_h4iuc"), ExtResource("5_fd4e3"), ExtResource("6_qqcod"), ExtResource("7_igrcy"), ExtResource("8_fs7ks"), ExtResource("9_l6n3p")])
-baseStats = Array[int]([0, 0, 0, 50, 50, 50, 10, 5, 1, 50, 100, 300, -175, 300, 1, 1, 1])
+baseStats = Array[int]([0, 0, 0, 50, 50, 50, 10, 5, 1, 50, 100, 300, -200, 300, 1, 1, 1])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2041854968]
 material = SubResource("ShaderMaterial_vbauc")
-texture = ExtResource("11_vbauc")
+texture = ExtResource("11_p6fni")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 288)
 
