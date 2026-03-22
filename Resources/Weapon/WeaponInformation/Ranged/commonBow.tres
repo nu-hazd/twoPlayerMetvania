@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://cliox12ujdyqf"]
+
+[ext_resource type="Texture2D" uid="uid://cpyybegsg8moq" path="res://Assets/Imports/bow-2d-weapon-pack/PNG/Bow_1/1.png" id="1_62ogy"]
+[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="2_8u5cc"]
+
+[resource]
+script = ExtResource("2_8u5cc")
+icon = ExtResource("1_62ogy")
+baseDamage = 7
+staminaCost = 4
+baseCooldown = 1.5
+metadata/_custom_type_script = "uid://b2vkijpdflr2l"

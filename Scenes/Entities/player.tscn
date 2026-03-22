@@ -15,8 +15,6 @@
 [ext_resource type="Curve" uid="uid://5g7gutyi2v2o" path="res://Resources/PlayerStatScalingCurves/dashCooldownScaling.tres" id="9_l6n3p"]
 [ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="11_fd4e3"]
 [ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="11_p6fni"]
-[ext_resource type="PackedScene" uid="uid://3kpmf5gmmdmf" path="res://Scenes/Weapons/MeleeWeapons/meleeWeaponTemplate.tscn" id="12_udx2w"]
-[ext_resource type="PackedScene" uid="uid://8j63ko7ukfdn" path="res://Scenes/Weapons/MeleeWeapons/temp.tscn" id="13_aqs8i"]
 [ext_resource type="Script" uid="uid://cu0j8gkydkhou" path="res://Scripts/Entities/Player/PlayerStates/wallSlide.gd" id="15_fd4e3"]
 [ext_resource type="Script" uid="uid://c7mbab3osw4ln" path="res://Scripts/Entities/Player/PlayerStates/dash.gd" id="15_h4iuc"]
 [ext_resource type="Script" uid="uid://do3cn4aypgia6" path="res://Scripts/Entities/Player/PlayerStates/crouch.gd" id="20_p6fni"]
@@ -610,29 +608,17 @@ graph_offset = Vector2(-164, 98)
 [sub_resource type="GDScript" id="GDScript_h4iuc"]
 script/source = "extends Panel
 
-
-@onready var player_two: Player = $\"..\"
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	$DashC.text = \"[table=2]
-[cell][color=gold]HasDash:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=red]iFrames:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=green]State:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=blue]dashCooldown:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=blue]vel:[/color][/cell][cell][color=white]%s[/color][/cell]
-[/table]\" % [
-	player_two.stats[Player.STATS.HAS_DASH],
-	player_two.iFrames,
-	player_two.state_machine.currentState.name,
-	player_two.dashCooldown,
-	player_two.velocity
-]
+@export var armory : WeaponArmory
+#
+#func _process(delta: float) -> void:
+	#var arr : String = \"Array: \"
+	#for weaponm in armory.getWeapons():
+		#arr += str(weaponm.get_instance_id()) + \", \"
+	#var arr2 : String = \"Children: \"
+	#for weapon : Weapon in armory.get_children():
+		#arr2 += str(weapon.get_instance_id()) + \", \"
+	#$array.text = arr
+	#$array2.text = arr2
 "
 
 [sub_resource type="Animation" id="Animation_vbauc"]
@@ -753,10 +739,6 @@ script = ExtResource("11_fd4e3")
 user = NodePath("..")
 metadata/_custom_type_script = "uid://dpt8w24d4nlvq"
 
-[node name="sword" parent="WeaponArmory" unique_id=1808072781 instance=ExtResource("12_udx2w")]
-
-[node name="swingWeaponSimple" parent="WeaponArmory" unique_id=1064847056 instance=ExtResource("13_aqs8i")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=632191384]
 libraries/ = SubResource("AnimationLibrary_gymyn")
 libraries/player = SubResource("AnimationLibrary_udx2w")
@@ -803,30 +785,31 @@ collision_mask = 16
 target_position = Vector2(9, 0)
 collision_mask = 16
 
-[node name="debug" type="Panel" parent="." unique_id=728090651]
+[node name="debug" type="Panel" parent="." unique_id=728090651 node_paths=PackedStringArray("armory")]
 visible = false
-offset_left = -80.0
-offset_top = -160.0
-offset_right = 83.0
-offset_bottom = -24.0
+offset_left = -517.0
+offset_top = -531.0
+offset_right = 485.0
+offset_bottom = 459.0
 script = SubResource("GDScript_h4iuc")
+armory = NodePath("../WeaponArmory")
 
-[node name="DashC" type="RichTextLabel" parent="debug" unique_id=1364378643]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.059
-offset_right = -8.0
-offset_bottom = -0.024002075
-grow_horizontal = 2
-grow_vertical = 2
+[node name="array2" type="RichTextLabel" parent="debug" unique_id=542429238]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 17.0
+offset_right = 1008.0
+offset_bottom = 434.0
 bbcode_enabled = true
-text = "[table=2]
-[cell][color=gold]HasDash:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=red]iFrames:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=green]State:[/color][/cell][cell][color=white]%s[/color][/cell]
-[cell][color=blue]dashCooldown:[/color][/cell][cell][color=white]%s[/color][/cell]
-[/table]"
+
+[node name="array" type="RichTextLabel" parent="debug" unique_id=1747937139]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 468.0
+offset_right = 973.0
+offset_bottom = 946.0
+bbcode_enabled = true
+horizontal_alignment = 1
 
 [node name="hitAndHeal" type="AnimationPlayer" parent="." unique_id=1605298096]
 libraries/ = SubResource("AnimationLibrary_w4uu0")

@@ -20,7 +20,7 @@ class_name WanderEnemyState
 @export var wanderTimeRange: Vector2 = Vector2(3, 5)
 
 ## The amount of uninterrupted time, in seconds, that the [Player] must remain visible
-## to [member enemy.player_detector] before this state transitions into the chase state.
+## to [member WanderingEnemy.player_detector] before this state transitions into the chase state.
 @export var wanderNoticeTime: float = 0.5
 
 ## The horizontal movement direction used during wandering.

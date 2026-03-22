@@ -73,6 +73,13 @@ func _ready() -> void:
 		state.player = self
 	state_machine.ready()
 
+func setupSignals() -> void:
+		statsChanged.connect(playerScreen.statPanel.updateStatPanel)
+		weapon_armory.weaponOnCooldown.connect(playerScreen.statPanel.startWeaponCooldown)
+		weapon_armory.weaponsChanged.connect(playerScreen.statPanel.updateWeaponHUD)
+		dashUsed.connect(playerScreen.statPanel.startRechargeBarCooldown)
+		weapon_armory.weaponsChanged.emit(weapon_armory.currentWeapons)
+
 ##
 ## Processes player input and updates state logic every physics frame.
 ##
@@ -89,15 +96,12 @@ func _ready() -> void:
 ## [param delta] The physics-frame delta time in seconds.
 ##
 func _physics_process(delta: float) -> void:
-	weapon_armory.useDirection = Input.get_vector(
+	weapon_armory.currentUseDirection = Input.get_vector(
 		playerControls.left,
 		playerControls.right,
 		playerControls.up,
 		playerControls.down
 	)
-
-	if not weapon_armory.useDirection.x:
-		weapon_armory.useDirection = Vector2(lastDirection, weapon_armory.useDirection.y)
 
 	if Input.is_action_just_pressed(playerControls.useWeapon1):
 		weapon_armory.useWeapon(0)

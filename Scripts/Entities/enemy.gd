@@ -7,9 +7,9 @@ class_name Enemy
 @onready var health_bar: ProgressBar = $healthBar
 @export var onDeatItemDrops : Dictionary[ItemInfo,int]
 @onready var death_anim: AnimationPlayer = $deathAnim
-
+var rigidBodyNode : Node2D
 var playerReferences : Array[Player]
-signal enemyDied(pos : Vector2, items : Dictionary[ItemInfo,int])
+signal enemyDied(pos : Vector2, items : Dictionary[ItemInfo,int], rigidBodyNode : Node2D)
 
 func _ready() -> void:
 	super._ready()
@@ -24,7 +24,7 @@ func startDeath() -> void:
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 func dead() -> void:
-	enemyDied.emit(self.global_position, onDeatItemDrops)
+	enemyDied.emit(self.global_position, onDeatItemDrops, rigidBodyNode)
 	self.queue_free()
 func updateHealthbar(_sts : Array[int]) -> void:
 	if getStat(STATS.CURRENT_HEALTH) <= 0:

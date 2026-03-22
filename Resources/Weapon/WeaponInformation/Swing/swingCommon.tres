@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://beuxo7otrw3y2"]
+
+[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="1_4kogh"]
+[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="1_tovyc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opiik"]
+atlas = ExtResource("1_4kogh")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_tovyc")
+icon = SubResource("AtlasTexture_opiik")
+baseDamage = 9
+staminaCost = 5
+baseCooldown = 2.0
+metadata/_custom_type_script = "uid://b2vkijpdflr2l"

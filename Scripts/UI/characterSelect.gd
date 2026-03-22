@@ -268,7 +268,7 @@ func skinLeft() -> void:
 ## [param attribute] The attribute index to increase.
 ##
 func addPoint(attribute: int) -> void:
-	if availablePoints > 0:
+	if availablePoints > 0 and spentPointDistribution[attribute] < 100:
 		availablePoints -= 1
 		spentPointDistribution[attribute] += 1
 		updateAttributeText()

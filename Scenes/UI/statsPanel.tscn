@@ -57,13 +57,28 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37fl8"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpykh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6167"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0.6862745)
 
-[node name="statsPanel" type="Panel" unique_id=546236056 node_paths=PackedStringArray("weaponRechargeBars", "weaponIcons")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1021"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="statsPanel" type="Panel" unique_id=546236056 node_paths=PackedStringArray("weaponRechargeBars", "weaponContainers", "weaponIcons", "coords")]
 custom_minimum_size = Vector2(256, 380)
 anchors_preset = -1
 anchor_right = 0.125
@@ -72,8 +87,10 @@ offset_right = -128.0
 offset_bottom = -192.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
 script = ExtResource("1_c7460")
-weaponRechargeBars = [NodePath("edge/informationListings/AspectRatioContainer/weapons/weapon1/cd"), NodePath("edge/informationListings/AspectRatioContainer/weapons/weapon2/cd2")]
-weaponIcons = [NodePath("edge/informationListings/AspectRatioContainer/weapons/weapon1"), NodePath("edge/informationListings/AspectRatioContainer/weapons/weapon2")]
+weaponRechargeBars = [NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponOneContainer/weapon1/cd"), NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponTwoContainer/weapon2/cd2")]
+weaponContainers = [NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponOneContainer"), NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponTwoContainer")]
+weaponIcons = [NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponOneContainer/weapon1"), NodePath("edge/informationListings/AspectRatioContainer/weapons/weaponTwoContainer/weapon2")]
+coords = NodePath("edge/informationListings/coords")
 
 [node name="edge" type="MarginContainer" parent="." unique_id=1563998250]
 layout_mode = 1
@@ -90,7 +107,7 @@ theme_override_constants/margin_bottom = 16
 [node name="informationListings" type="VBoxContainer" parent="edge" unique_id=1077854798]
 layout_mode = 2
 
-[node name="className" type="Label" parent="edge/informationListings" unique_id=950894657]
+[node name="coords" type="Label" parent="edge/informationListings" unique_id=950894657]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_vertical = 6
@@ -140,13 +157,18 @@ custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 alignment = 1
 
-[node name="weapon1" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=877476952]
+[node name="weaponOneContainer" type="PanelContainer" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=1457620917]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_37fl8")
+
+[node name="weapon1" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons/weaponOneContainer" unique_id=877476952]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_nnu00")
 expand_mode = 1
 
-[node name="cd" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weapon1" unique_id=1090706941]
+[node name="cd" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weaponOneContainer/weapon1" unique_id=1090706941]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.906
@@ -159,13 +181,17 @@ theme_override_styles/background = SubResource("StyleBoxFlat_bpykh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_m6167")
 show_percentage = false
 
-[node name="weapon2" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=151556297]
+[node name="weaponTwoContainer" type="PanelContainer" parent="edge/informationListings/AspectRatioContainer/weapons" unique_id=443327633]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1021")
+
+[node name="weapon2" type="TextureRect" parent="edge/informationListings/AspectRatioContainer/weapons/weaponTwoContainer" unique_id=151556297]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_nnu00")
 expand_mode = 1
 
-[node name="cd2" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weapon2" unique_id=1283218951]
+[node name="cd2" type="ProgressBar" parent="edge/informationListings/AspectRatioContainer/weapons/weaponTwoContainer/weapon2" unique_id=1283218951]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.906

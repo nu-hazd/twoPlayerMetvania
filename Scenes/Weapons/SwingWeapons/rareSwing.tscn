@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dmhohajmra2vi"]
+
+[ext_resource type="PackedScene" uid="uid://csw2oap81iptp" path="res://Scenes/Weapons/SwingWeapons/templateSwing.tscn" id="1_h10mm"]
+[ext_resource type="Resource" uid="uid://dkjno7b78ot6h" path="res://Resources/Weapon/WeaponInformation/Swing/swingRare.tres" id="2_urx53"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymhfa"]
+radius = 4.949748
+height = 29.698488
+
+[node name="rareSwing" unique_id=1934276913 instance=ExtResource("1_h10mm")]
+visible = true
+swingSpeed = 0.3
+info = ExtResource("2_urx53")
+
+[node name="Sprite2D" parent="pivot" parent_id_path=PackedInt32Array(1630742713) index="0" unique_id=886740408]
+region_rect = Rect2(288, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/hitboxes/mid" parent_id_path=PackedInt32Array(1545245511) index="0" unique_id=1532854929]
+position = Vector2(4.9999995, -4.9999995)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_ymhfa")

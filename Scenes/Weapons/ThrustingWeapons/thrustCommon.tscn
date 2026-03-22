@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://lbsqdcwotoog"]
+
+[ext_resource type="PackedScene" uid="uid://bjtw61i5glrmr" path="res://Scenes/Weapons/ThrustingWeapons/templateThrustingWeapon.tscn" id="1_qxfsj"]
+[ext_resource type="Resource" uid="uid://c80vva7bhd264" path="res://Resources/Weapon/WeaponInformation/Thrust/thrustCommon.tres" id="2_ynn6f"]
+[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="3_kssar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd47x"]
+size = Vector2(26, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe4wy"]
+size = Vector2(7, 6)
+
+[sub_resource type="Animation" id="Animation_42yq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot/displacement:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8.0]
+}
+
+[sub_resource type="Animation" id="Animation_0lhxk"]
+resource_name = "thrust"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot/displacement:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 8.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pivot/displacement/hitboxes/mid")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activateHitbox"
+}, {
+"args": [],
+"method": &"deactivateHitbox"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pivot/displacement/hitboxes/high")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activateHitbox"
+}, {
+"args": [],
+"method": &"deactivateHitbox"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deactivate"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cd47x"]
+_data = {
+&"RESET": SubResource("Animation_42yq6"),
+&"thrust": SubResource("Animation_0lhxk")
+}
+
+[node name="starterRapier" unique_id=2065005665 instance=ExtResource("1_qxfsj")]
+info = ExtResource("2_ynn6f")
+
+[node name="displacement" parent="pivot" parent_id_path=PackedInt32Array(2076594779) index="0" unique_id=1103433189]
+position = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/displacement/hitboxes/mid" parent_id_path=PackedInt32Array(1160545755) index="0" unique_id=1415746396]
+position = Vector2(11, 0)
+shape = SubResource("RectangleShape2D_cd47x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/displacement/hitboxes/high" parent_id_path=PackedInt32Array(416163294) index="0" unique_id=194701246]
+position = Vector2(27.5, 0)
+shape = SubResource("RectangleShape2D_pe4wy")
+debug_color = Color(0.9465261, 0.23365787, 0, 0.41960785)
+
+[node name="sprite" parent="pivot/displacement" index="1" unique_id=57960556]
+position = Vector2(8, 0)
+rotation = 0.7853982
+texture = ExtResource("3_kssar")
+region_enabled = true
+region_rect = Rect2(0, 192, 32, 32)
+
+[node name="thrust" parent="." index="2" unique_id=205532118]
+libraries/ = SubResource("AnimationLibrary_cd47x")

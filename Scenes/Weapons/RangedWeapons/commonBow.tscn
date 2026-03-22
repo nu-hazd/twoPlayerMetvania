@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bst1ilknexqkv"]
+
+[ext_resource type="PackedScene" uid="uid://bd15p6wgshitu" path="res://Scenes/Weapons/RangedWeapons/rangedWeapon.tscn" id="1_g1p4o"]
+[ext_resource type="Resource" uid="uid://cliox12ujdyqf" path="res://Resources/Weapon/WeaponInformation/Ranged/commonBow.tres" id="2_g1p4o"]
+[ext_resource type="Texture2D" uid="uid://cpyybegsg8moq" path="res://Assets/Imports/bow-2d-weapon-pack/PNG/Bow_1/1.png" id="3_g63kp"]
+[ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="4_hejqh"]
+
+[node name="commonBow" unique_id=768601979 instance=ExtResource("1_g1p4o")]
+info = ExtResource("2_g1p4o")
+
+[node name="Sprite2D" parent="." index="0" unique_id=49725994]
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("3_g63kp")
+
+[node name="pRef" type="Sprite2D" parent="." index="3" unique_id=2067456673]
+visible = false
+texture = ExtResource("4_hejqh")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

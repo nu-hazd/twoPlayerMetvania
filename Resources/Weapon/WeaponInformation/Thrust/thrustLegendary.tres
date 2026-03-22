@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://cjhqj1d515wxg"]
+
+[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="1_f4t2f"]
+[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="1_lx1vq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dnop"]
+atlas = ExtResource("1_lx1vq")
+region = Rect2(64, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1c71"]
+atlas = SubResource("AtlasTexture_7dnop")
+
+[resource]
+script = ExtResource("1_f4t2f")
+icon = SubResource("AtlasTexture_l1c71")
+tier = 3
+baseDamage = 35
+staminaCost = 12
+baseCooldown = 3.0
+metadata/_custom_type_script = "uid://b2vkijpdflr2l"

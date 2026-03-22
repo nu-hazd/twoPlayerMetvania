@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bjtw61i5glrmr"]
+
+[ext_resource type="Script" uid="uid://ikwyfswyyet6" path="res://Scripts/Weapon/Types/thrust.gd" id="1_qfcg1"]
+[ext_resource type="PackedScene" uid="uid://cq2kowi47pv6l" path="res://Scenes/Weapons/weaponHitbox.tscn" id="2_3o7o7"]
+[ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="3_pp600"]
+
+[node name="TemplateThrustingWeapon" type="Node2D" unique_id=2065005665]
+script = ExtResource("1_qfcg1")
+metadata/_custom_type_script = "uid://ikwyfswyyet6"
+
+[node name="pivot" type="Marker2D" parent="." unique_id=2076594779]
+
+[node name="displacement" type="Marker2D" parent="pivot" unique_id=1103433189]
+
+[node name="hitboxes" type="Node2D" parent="pivot/displacement" unique_id=620119442]
+
+[node name="low" parent="pivot/displacement/hitboxes" unique_id=1679352974 instance=ExtResource("2_3o7o7")]
+multiplier = 0.66
+
+[node name="mid" parent="pivot/displacement/hitboxes" unique_id=1160545755 instance=ExtResource("2_3o7o7")]
+
+[node name="high" parent="pivot/displacement/hitboxes" unique_id=416163294 instance=ExtResource("2_3o7o7")]
+multiplier = 1.33
+
+[node name="tipperEffect" type="CPUParticles2D" parent="pivot/displacement/hitboxes/high" unique_id=2043208668]
+position = Vector2(27, 0)
+emitting = false
+amount = 40
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.33
+randomness = 0.25
+lifetime_randomness = 0.25
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+color = Color(0.54509807, 1, 0, 1)
+
+[node name="sprite" type="Sprite2D" parent="pivot/displacement" unique_id=57960556]
+
+[node name="pRef" type="Sprite2D" parent="." unique_id=1240653536]
+visible = false
+texture = ExtResource("3_pp600")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="thrust" type="AnimationPlayer" parent="." unique_id=205532118]

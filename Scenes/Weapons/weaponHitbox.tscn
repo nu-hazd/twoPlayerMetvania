@@ -10,3 +10,4 @@ script = ExtResource("1_7xlst")
 metadata/_custom_type_script = "uid://ckuya5d2n23pd"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

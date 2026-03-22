@@ -50,6 +50,7 @@ enum TYPES {
 ##
 func _ready() -> void:
 	set_physics_process(false)
+	$eliminate.start()
 
 ##
 ## Configures this pickup from an [ItemInfo] resource.
@@ -69,7 +70,6 @@ func setup(info: ItemInfo):
 	$pickupRange.monitoring = false
 	$pickupRange/sprite.region_rect.position = info.coords
 	self.mass = info.mass
-	print($pickupRange/sprite.region_rect)
 	$pickupRange.scale = info.scale
 	type = info.type
 
@@ -173,3 +173,7 @@ func _on_gravitate_range_body_exited(body: Node2D) -> void:
 ##
 func _on_disable_pickup_timeout() -> void:
 	$pickupRange.monitoring = true
+
+
+func _on_eliminate_timeout() -> void:
+	$dissappear.play("dissappear")

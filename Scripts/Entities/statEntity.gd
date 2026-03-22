@@ -17,7 +17,7 @@ extends CharacterBody2D
 ##
 class_name StatEntity
 
-
+var currentRoomRigidBodyNode : Node2D
 ## Curves used to scale derived stats from the entity's core attributes.
 ##
 ## Specific indices are used by [method updateStats] to calculate values such as
@@ -90,7 +90,6 @@ func _ready() -> void:
 	mat.set_shader_parameter("enabled", false)
 	stats = baseStats.duplicate(true)
 	updateStats()
-	weapon_armory.initSystem()
 	stats[STATS.CURRENT_HEALTH] = stats[STATS.MAX_HEALTH]
 	stats[STATS.CURRENT_STAMINA] = stats[STATS.MAX_STAMINA]
 
@@ -112,6 +111,13 @@ func getStat(stat: STATS) -> int:
 func setStat(stat: STATS, newValue: int) -> void:
 	self.stats[stat] = newValue
 	updateStats()
+
+func getVitality() -> int:
+	return getStat(STATS.VITALITY)
+func getAgility() -> int:
+	return getStat(STATS.AGILITY)
+func getTechnique() -> int:
+	return getStat(STATS.TECHNIQUE)
 
 ##
 ## Increases one of the core attributes by a given amount.
@@ -160,7 +166,9 @@ func heal(amount: int) -> void:
 ##
 ## [param amount] The amount of damage to apply.
 ##
-func damage(amount: int) -> void:
+func damage(amount: int) -> bool:
+	if isInvincible():
+		return false
 	if self is Player:
 		self.iFrames = max(0.35, self.iFrames)
 	$hitAndHeal.play("hit")
@@ -168,6 +176,7 @@ func damage(amount: int) -> void:
 		STATS.CURRENT_HEALTH,
 		clamp(getStat(STATS.CURRENT_HEALTH) - amount, 0, getStat(STATS.MAX_HEALTH))
 	)
+	return true
 
 ##
 ## Returns whether this entity is currently invincible.

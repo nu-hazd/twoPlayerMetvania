@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bfqsq777ikjq3" path="res://Scripts/World/room.gd" id="1_swfdp"]
 [ext_resource type="TileSet" uid="uid://bscpi10wxyxgv" path="res://Resources/overworld.tres" id="2_eqoas"]
-[ext_resource type="PackedScene" uid="uid://co8yrpercbkir" path="res://Scenes/World/Items/itemSpawner.tscn" id="3_eqoas"]
 
 [node name="room" type="Node2D" unique_id=924014895]
 script = ExtResource("1_swfdp")
+
+[node name="brightness" type="DirectionalLight2D" parent="." unique_id=1365891359]
+color = Color(0, 0, 0, 1)
+energy = 0.05
+blend_mode = 1
 
 [node name="backgrounds" type="Node2D" parent="." unique_id=1320486222]
 z_index = -1
@@ -33,16 +37,14 @@ tile_set = ExtResource("2_eqoas")
 
 [node name="Chests" type="Node2D" parent="." unique_id=436153108]
 
-[node name="RigidBodies" type="Node2D" parent="." unique_id=1325649732]
-
 [node name="middle" type="TileMapLayer" parent="." unique_id=1735406811]
 tile_set = ExtResource("2_eqoas")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=30584525]
 
-[node name="ItemSpawner" parent="." unique_id=426828582 instance=ExtResource("3_eqoas")]
-
 [node name="Players" type="Node2D" parent="." unique_id=150351576]
+
+[node name="RigidBodies" type="Node2D" parent="." unique_id=1325649732]
 
 [node name="front" type="TileMapLayer" parent="." unique_id=1312838953]
 tile_set = ExtResource("2_eqoas")

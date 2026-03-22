@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://oi2tetqb86sw"]
+
+[ext_resource type="PackedScene" uid="uid://bd15p6wgshitu" path="res://Scenes/Weapons/RangedWeapons/rangedWeapon.tscn" id="1_gyrq3"]
+[ext_resource type="PackedScene" uid="uid://bxq4v8g18utfj" path="res://Scenes/Weapons/RangedWeapons/Projectiles/Linear/straightArrow.tscn" id="2_6yg5o"]
+[ext_resource type="Texture2D" uid="uid://bo76kh8k6vi4x" path="res://Assets/Imports/bow-2d-weapon-pack/PNG/Bow_3/2.png" id="2_udyy3"]
+[ext_resource type="Resource" uid="uid://bjodya26bfu0a" path="res://Resources/Weapon/WeaponInformation/Ranged/rareBow.tres" id="3_udyy3"]
+[ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="4_c3poi"]
+
+[node name="rareBow" unique_id=768601979 instance=ExtResource("1_gyrq3")]
+loadedProjectile = ExtResource("2_6yg5o")
+baseShootPower = 85
+info = ExtResource("3_udyy3")
+
+[node name="Sprite2D" parent="." index="0" unique_id=49725994]
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("2_udyy3")
+
+[node name="pRef" type="Sprite2D" parent="." index="3" unique_id=2067456673]
+visible = false
+texture = ExtResource("4_c3poi")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

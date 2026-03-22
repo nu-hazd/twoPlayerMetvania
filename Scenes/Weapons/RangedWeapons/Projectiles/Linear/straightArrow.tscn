@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bxq4v8g18utfj"]
+
+[ext_resource type="PackedScene" uid="uid://blkt8bdj0ftqn" path="res://Scenes/Weapons/RangedWeapons/Projectiles/Parabolic/parabolicProjectile.tscn" id="1_rjcg6"]
+[ext_resource type="Texture2D" uid="uid://dv5wgdoqpgihw" path="res://Assets/Weapons/arrow (5).png" id="2_pe644"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7kfd"]
+size = Vector2(7, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrkbr"]
+radius = 4.0
+height = 50.48544
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m30rj"]
+radius = 4.0
+height = 50.980396
+
+[node name="straightArrow" unique_id=1074870888 instance=ExtResource("1_rjcg6")]
+mass = 0.25
+gravity_scale = 0.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(6, -2)
+inertia = 0.05
+lock_rotation = false
+piercing = true
+
+[node name="sprite" parent="." index="0" unique_id=646899352]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_pe644")
+
+[node name="wallCollision" parent="." index="1" unique_id=1361984338]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_r7kfd")
+
+[node name="entityDetector" parent="." index="2" unique_id=222735316]
+scale = Vector2(0.515, 0.515)
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entityDetector" index="0" unique_id=110893059]
+position = Vector2(0, -1)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_xrkbr")
+
+[node name="wallDetector" parent="." index="3" unique_id=1332634618]
+scale = Vector2(0.51, 0.51)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallDetector" index="0" unique_id=705664187]
+position = Vector2(0, -1)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_m30rj")
+
+[node name="lifetime" parent="." index="4" unique_id=1031790694]
+wait_time = 1.5
+
+[node name="queueDeletion" parent="." index="5" unique_id=2115207530]
+wait_time = 0.25
+one_shot = false

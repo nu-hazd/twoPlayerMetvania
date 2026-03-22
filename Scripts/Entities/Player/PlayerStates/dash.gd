@@ -52,7 +52,6 @@ func onEnter() -> void:
 	player.dashCooldown = float(player.getStat(Player.STATS.DASH_COOLDOWN)) / 100.0
 	player.dashUsed.emit(player.dashCooldown)
 	player.consumeStamina(5)
-	player.set_collision_mask_value(2, false)
 	player.iFrames = 0.25 * (1 + player.getStat(Player.STATS.AGILITY) / 100.0)
 	player.velocity.y = 0
 	duration = dashDuration
@@ -106,5 +105,4 @@ func process(_delta: float) -> void:
 ## - Disables the `"dash"` animation condition.
 ##
 func onExit() -> void:
-	player.set_collision_mask_value(2, true)
 	animHandler.set("parameters/conditions/dash", false)

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c3gxssydcbjfg"]
+
+[ext_resource type="Script" uid="uid://dpt8w24d4nlvq" path="res://Scripts/Weapon/weaponArmory.gd" id="1_wm1rg"]
+
+[node name="WeaponArmory" type="Node2D" unique_id=1991975376]
+script = ExtResource("1_wm1rg")
+metadata/_custom_type_script = "uid://dpt8w24d4nlvq"

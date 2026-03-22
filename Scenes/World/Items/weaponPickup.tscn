@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://wvnewu345ces"]
+
+[ext_resource type="Script" uid="uid://cee7ew0evbl3u" path="res://Scripts/Items/weaponPickup.gd" id="1_j7cjf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jsme"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7k0a"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7cjf"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_mywr3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ymixj"]
+resource_name = "dissappear"
+length = 3.0
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667, 1, 1.3333334, 1.6666666, 2, 2.142857, 2.2857144, 2.4285715, 2.5714285, 2.7142856, 2.857143, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.0, 0.5, 1.0, 0.5, 1.0, 0.3, 1.0, 0.3, 1.0, 0.25, 1.0, 0.25, 1.0, 0.2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7cjf"]
+_data = {
+&"RESET": SubResource("Animation_mywr3"),
+&"dissappear": SubResource("Animation_ymixj")
+}
+
+[node name="WeaponPickup" type="RigidBody2D" unique_id=147814306]
+collision_layer = 0
+collision_mask = 16
+gravity_scale = 0.33
+lock_rotation = true
+script = ExtResource("1_j7cjf")
+
+[node name="texture" type="TextureRect" parent="." unique_id=1915050462]
+custom_minimum_size = Vector2(32, 32)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+expand_mode = 1
+
+[node name="disablePickup" type="Timer" parent="." unique_id=1867231641]
+one_shot = true
+autostart = true
+
+[node name="eliminate" type="Timer" parent="." unique_id=279913811]
+wait_time = 20.0
+one_shot = true
+
+[node name="pickupRange" type="Area2D" parent="." unique_id=833788444]
+collision_layer = 0
+
+[node name="pickupRangeCollsion" type="CollisionShape2D" parent="pickupRange" unique_id=129397360]
+shape = SubResource("CircleShape2D_6jsme")
+debug_color = Color(0.9989471, 0, 0.14070976, 0.41960785)
+
+[node name="gravitateRange" type="Area2D" parent="." unique_id=561938055]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gravitateRange" unique_id=870761503]
+shape = SubResource("CircleShape2D_k7k0a")
+debug_color = Color(0.95679754, 5.7756904e-07, 0.5386044, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=721233470]
+shape = SubResource("CircleShape2D_j7cjf")
+debug_color = Color(0.74502134, 0.46363133, 1.92523e-07, 0.41960785)
+
+[node name="dissappear" type="AnimationPlayer" parent="." unique_id=431640976]
+libraries/ = SubResource("AnimationLibrary_j7cjf")
+
+[connection signal="timeout" from="disablePickup" to="." method="_on_disable_pickup_timeout"]
+[connection signal="timeout" from="eliminate" to="." method="_on_eliminate_timeout"]
+[connection signal="body_entered" from="pickupRange" to="." method="_on_pickup_range_body_entered"]
+[connection signal="body_entered" from="gravitateRange" to="." method="_on_gravitate_range_body_entered"]

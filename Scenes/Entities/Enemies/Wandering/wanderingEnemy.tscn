@@ -2,15 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://c0jefutgqfd3r" path="res://Scenes/Entities/abstractEnemy.tscn" id="1_s8u6a"]
 [ext_resource type="Script" uid="uid://bghapsy1kaj5g" path="res://Scripts/Entities/Enemies/WanderingEnemy/wanderingEnemy.gd" id="2_acat7"]
+[ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="3_cn2kg"]
 [ext_resource type="Script" uid="uid://bksfimbcgtnl4" path="res://Scripts/Entities/Enemies/WanderingEnemy/States/wanderingIdle.gd" id="3_yof1r"]
 [ext_resource type="Script" uid="uid://c48ejn6pcerma" path="res://Scripts/Entities/Enemies/WanderingEnemy/States/wanderingWander.gd" id="4_acat7"]
 [ext_resource type="Script" uid="uid://b4cidlfdy0cts" path="res://Scripts/Entities/Enemies/WanderingEnemy/States/wanderingChase.gd" id="6_cn2kg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mehcv"]
+shader = ExtResource("3_cn2kg")
+shader_parameter/hitFlashColor = Color(0, 1, 0, 1)
+shader_parameter/enabled = true
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_acat7"]
 
 [node name="wanderingEnemy" unique_id=449371144 instance=ExtResource("1_s8u6a")]
 script = ExtResource("2_acat7")
 isKoopa = true
+contactKnockback = 0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1113159217]
+material = SubResource("ShaderMaterial_mehcv")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1460129409]
 position = Vector2(0, 0.5)
@@ -47,7 +57,7 @@ collision_mask = 16
 target_position = Vector2(2, 9)
 collision_mask = 16
 
-[node name="healthBar" parent="." index="11" unique_id=1962810473]
+[node name="healthBar" parent="." index="12" unique_id=1962810473]
 custom_minimum_size = Vector2(0, 0)
 offset_left = -9.0
 offset_top = -14.0

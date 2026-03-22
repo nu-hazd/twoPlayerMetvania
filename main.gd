@@ -24,18 +24,18 @@ func gameStart(stats: Array, atlases: Array[AtlasTexture]) -> void:
 			push_error("Non player in start room players node.")
 	for i in range(2):
 		players[i].remote_transform_2d.remote_path = playerScreens[i].player_cam.get_path()
-		players[i].statsChanged.connect(playerScreens[i].statPanel.updateStatPanel)
-		players[i].weapon_armory.weaponOnCooldown.connect(playerScreens[i].statPanel.startWeaponCooldown)
-		players[i].weapon_armory.updateHUD.connect(playerScreens[i].statPanel.updateWeaponHUD)
 		players[i].playerScreen = playerScreens[i]
 		players[i].setCameraLimits(world2D.start_room.boundaries)
-		players[i].weapon_armory.updateWeapons()
 		players[i].setStat(Player.STATS.VITALITY, stats[i][0])
 		players[i].setStat(Player.STATS.AGILITY, stats[i][1])
 		players[i].setStat(Player.STATS.TECHNIQUE, stats[i][2])
+		players[i].weapon_armory.setupWeapons()
 		players[i].setAtlas(atlases[i])
 		players[i].statsChanged.emit(players[i].stats)
-		players[i].dashUsed.connect(playerScreens[i].statPanel.startRechargeBarCooldown)
+		players[i].setupSignals()
+		var center : Vector2 = Vector2((world2D.start_room.boundaries[1]-world2D.start_room.boundaries[0])/2.0/16.0,(world2D.start_room.boundaries[3]-world2D.start_room.boundaries[2])/2.0/16.0)
+		players[i].playerScreen.statPanel.updateCoords(center)
 	$Display.show()
 	character_selection.queue_free()
+	await players[0].statsChanged
 	$gameWideFade.play_backwards("fade")

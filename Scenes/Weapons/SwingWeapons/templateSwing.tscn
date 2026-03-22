@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://csw2oap81iptp"]
+
+[ext_resource type="Script" uid="uid://boji0i6alphyt" path="res://Scripts/Weapon/Types/swing.gd" id="1_45y0c"]
+[ext_resource type="Texture2D" uid="uid://bpo2c4uymeuw6" path="res://Assets/Entities/Player/playTestSprites.png" id="2_1o2yv"]
+[ext_resource type="Texture2D" uid="uid://c4qaf53q88fkw" path="res://Assets/Weapons/SWORDS.png" id="2_o2wmj"]
+[ext_resource type="PackedScene" uid="uid://cq2kowi47pv6l" path="res://Scenes/Weapons/weaponHitbox.tscn" id="3_00dlj"]
+
+[sub_resource type="Animation" id="Animation_00dlj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_o2wmj"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.7853981633974483, 2.356194490192345]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deactivate"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1o2yv"]
+_data = {
+&"RESET": SubResource("Animation_00dlj"),
+&"swing": SubResource("Animation_o2wmj")
+}
+
+[node name="TemplateSwingWeapon" type="Node2D" unique_id=1934276913]
+visible = false
+script = ExtResource("1_45y0c")
+metadata/_custom_type_script = "uid://boji0i6alphyt"
+
+[node name="plyrSpriteRef" type="Sprite2D" parent="." unique_id=291155097]
+visible = false
+texture = ExtResource("2_1o2yv")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="pivot" type="Marker2D" parent="." unique_id=1630742713]
+position = Vector2(5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="pivot" unique_id=886740408]
+position = Vector2(10, -10)
+texture = ExtResource("2_o2wmj")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="hitboxes" type="Node2D" parent="pivot" unique_id=917387474]
+position = Vector2(10, -10)
+
+[node name="low" parent="pivot/hitboxes" unique_id=1679352974 instance=ExtResource("3_00dlj")]
+multiplier = 0.66
+
+[node name="mid" parent="pivot/hitboxes" unique_id=1545245511 instance=ExtResource("3_00dlj")]
+
+[node name="high" parent="pivot/hitboxes" unique_id=1335795235 instance=ExtResource("3_00dlj")]
+multiplier = 1.33
+
+[node name="swing" type="AnimationPlayer" parent="." unique_id=1651986224]
+libraries/ = SubResource("AnimationLibrary_1o2yv")

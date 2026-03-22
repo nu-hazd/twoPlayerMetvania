@@ -7,10 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cpgu6y3pv7lpc" path="res://Scenes/World/Obstacles/door.tscn" id="4_adcqc"]
 [ext_resource type="AudioStream" uid="uid://dpdpnqfvrk6si" path="res://Assets/Sound/Music/overworld.mp3" id="5_l1hd3"]
 [ext_resource type="PackedScene" uid="uid://y52vm7s5pp5e" path="res://Scenes/World/Rooms/room3test.tscn" id="6_3gkby"]
+[ext_resource type="Script" uid="uid://dw17un3x7wiq3" path="res://Scripts/Items/rigidBodySpawner.gd" id="7_vmaif"]
+[ext_resource type="PackedScene" uid="uid://dywbbgom3nvv5" path="res://Scenes/World/Rooms/room4test.tscn" id="7_y5xba"]
 
-[node name="world" type="Node2D" unique_id=549322314 node_paths=PackedStringArray("start_room")]
+[node name="world" type="Node2D" unique_id=549322314 node_paths=PackedStringArray("start_room", "rigid_body_spawner")]
 script = ExtResource("1_yp2ti")
 start_room = NodePath("Rooms/startRoom")
+rigid_body_spawner = NodePath("RigidBodySpawner")
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1831701690]
 
@@ -40,7 +43,7 @@ gizmo_extents = 16.0
 
 [node name="middleRoom" parent="Rooms" unique_id=961431617 node_paths=PackedStringArray("doors") instance=ExtResource("3_l1hd3")]
 position = Vector2(320, 0)
-doors = [NodePath("Mid-Lft"), NodePath("lMid-Up"), NodePath("rMid-Up")]
+doors = [NodePath("Mid-Lft"), NodePath("lMid-Up"), NodePath("rMid-Up"), NodePath("midWeapon")]
 
 [node name="Mid-Lft" parent="Rooms/middleRoom" unique_id=716753206 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
 position = Vector2(-11, 216.00002)
@@ -69,6 +72,16 @@ targetDoor = NodePath("../../openRoom/rUp-Mid")
 arrival_pos = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="Rooms/middleRoom/rMid-Up" unique_id=1241860547]
+position = Vector2(-0.41640428, 46.862762)
+
+[node name="midWeapon" parent="Rooms/middleRoom" unique_id=48140390 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(704.00006, 91)
+rotation = 1.5707964
+scale = Vector2(2.7999997, 0.6999999)
+targetDoor = NodePath("../../room0/weaponMid")
+arrival_pos = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Rooms/middleRoom/midWeapon" unique_id=690546444]
 position = Vector2(-0.41640428, 46.862762)
 
 [node name="openRoom" parent="Rooms" unique_id=1785910203 node_paths=PackedStringArray("doors") instance=ExtResource("4_7staa")]
@@ -106,6 +119,24 @@ arrival_pos = NodePath("Marker2D")
 [node name="Marker2D" type="Marker2D" parent="Rooms/platformerRood/platformerToStart" unique_id=737955720]
 position = Vector2(-76.31595, 4.7683716e-07)
 gizmo_extents = 16.0
+
+[node name="room0" parent="Rooms" unique_id=118889058 node_paths=PackedStringArray("doors") instance=ExtResource("7_y5xba")]
+position = Vector2(352, 0)
+doors = [NodePath("weaponMid")]
+
+[node name="weaponMid" parent="Rooms/room0" unique_id=1501818034 node_paths=PackedStringArray("targetDoor", "arrival_pos") instance=ExtResource("4_adcqc")]
+position = Vector2(704, 91)
+rotation = -1.5707964
+scale = Vector2(2.7999997, 0.6999999)
+targetDoor = NodePath("../../middleRoom/midWeapon")
+arrival_pos = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Rooms/room0/weaponMid" unique_id=1630108254]
+position = Vector2(-1.7857157, 159.99998)
+
+[node name="RigidBodySpawner" type="Marker2D" parent="." unique_id=1316766290]
+script = ExtResource("7_vmaif")
+metadata/_custom_type_script = "uid://dw17un3x7wiq3"
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="." unique_id=2055467407]
 stream = ExtResource("5_l1hd3")

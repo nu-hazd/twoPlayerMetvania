@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponInformation" format=3 uid="uid://b7wlgymkmk7a4"]
+
+[ext_resource type="Script" uid="uid://b2vkijpdflr2l" path="res://Resources/Scripts/weaponInfo.gd" id="1_0yyyw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0yyyw"]
+load_path = "res://.godot/imported/SWORDS.png-945c05e13e8e481fa2c786c529ed990d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr637"]
+atlas = SubResource("CompressedTexture2D_0yyyw")
+region = Rect2(480, 384, 32, 32)
+
+[resource]
+script = ExtResource("1_0yyyw")
+icon = SubResource("AtlasTexture_gr637")
+tier = 2
+baseDamage = 20
+staminaCost = 10
+baseCooldown = 2.0
+metadata/_custom_type_script = "uid://b2vkijpdflr2l"

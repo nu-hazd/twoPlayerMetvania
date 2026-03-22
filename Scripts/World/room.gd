@@ -8,7 +8,7 @@ class_name Room
 
 @onready var enemy_manager: Node2D = $EnemyManager
 @onready var rigid_bodies : Node2D = $RigidBodies
-@onready var item_spawner: ItemSpawner = $ItemSpawner
+@onready var rigidBodySpawner: RigidBodySpawner 
 @onready var chests: Node2D = $Chests
 @export var doors: Array[Door] 
 @onready var players: Node2D = $Players
@@ -25,10 +25,14 @@ func _ready() -> void:
 		door.parentRoom = self
 		door.playerEnteredDoor.connect(exitRoom)
 	for chest : Chest in chests.get_children():
-		chest.spawnItems.connect(item_spawner.spawnItems)
+		chest.rigidBodyNode = rigid_bodies
+		if chest is ItemChest:
+			chest.spawnItems.connect(rigidBodySpawner.spawnItems)
+		if chest is WeaponChest:
+			chest.spawnWeapon.connect(rigidBodySpawner.spawnWeapon)
 	for enemy : Enemy in enemy_manager.get_children():
-		enemy.enemyDied.connect(item_spawner.spawnItems)
-	item_spawner.rigidBodyNode = rigid_bodies
+		enemy.rigidBodyNode = rigid_bodies
+		enemy.enemyDied.connect(rigidBodySpawner.spawnItems)
 func exitRoom(player : Player, destinationDoor : Door) -> void:
 	player.set_physics_process(false)
 	players.remove_child(player)
@@ -39,9 +43,12 @@ func exitRoom(player : Player, destinationDoor : Door) -> void:
 	player.lastSafePos = destinationDoor.arrival_pos.global_position
 func enterRoom(player : Player) -> void:
 	players.add_child(player)
+	player.currentRoomRigidBodyNode = rigid_bodies
 	player.set_physics_process(true)
 	player.setCameraLimits(boundaries)
 	player.playerScreen.unfadeScreen()
+	var center : Vector2 = Vector2((boundaries[1]-boundaries[0])/2.0/16.0,(boundaries[3]-boundaries[2])/2.0/16.0)
+	player.playerScreen.statPanel.updateCoords(center)
 	await player.playerScreen.screen_fade_player.animation_finished
 func softResetRoom() -> void:
 	pass

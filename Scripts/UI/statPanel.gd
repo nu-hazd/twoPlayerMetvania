@@ -18,6 +18,7 @@ class_name StatPanel
 ## This script assumes the array contains two entries, one for each weapon slot.
 @export var weaponRechargeBars: Array[ProgressBar]
 
+@export var weaponContainers : Array[PanelContainer]
 ## Texture rectangles used to display weapon icons.
 ##
 ## This script assumes the array contains two entries, one for each weapon slot.
@@ -33,6 +34,8 @@ var weaponCooldowns: Array[float] = [0.0, 0.0]
 
 ## The remaining dash cooldown time, in seconds.
 var dashCooldown: float = 0.0
+
+@export var coords: Label
 
 ##
 ## Initializes the stat panel.
@@ -57,10 +60,13 @@ func _ready() -> void:
 ## [param weaponNumber] The index of the weapon slot to update.
 ## [param time] The cooldown duration, in seconds.
 ##
-func startWeaponCooldown(weaponNumber: int, time: float) -> void:
+func startWeaponCooldown(time: float, weaponNumber : int) -> void:
 	if weaponNumber < 0 or weaponNumber > 1:
 		return
-
+	if time == 0:
+		weaponRechargeBars[weaponNumber].visible = false
+	else:
+		weaponRechargeBars[weaponNumber].visible = true
 	weaponCooldowns[weaponNumber] = time
 	weaponRechargeBars[weaponNumber].max_value = time
 	weaponRechargeBars[weaponNumber].value = time
@@ -178,5 +184,47 @@ func updateStatPanel(stats: Array[int]) -> void:
 ## [param weapons] The array of equipped weapons to display.
 ##
 func updateWeaponHUD(weapons: Array[Weapon]) -> void:
-	weaponIcons[0].texture = weapons[0].info.icon
-	weaponIcons[1].texture = weapons[1].info.icon
+	match  weapons.size():
+		0:
+			weaponContainers[0].self_modulate = Color(255,255,255,0)
+			weaponContainers[1].self_modulate = Color(255,255,255,0)
+			weaponContainers[0].visible = false
+			weaponContainers[1].visible = false
+		1:
+			weaponIcons[0].texture = weapons[0].info.icon
+			weaponContainers[0].visible = true
+			match weapons[0].info.tier:
+				WeaponInformation.TIER.COMMON:
+					weaponContainers[0].self_modulate = Color.WHITE
+				WeaponInformation.TIER.RARE:
+					weaponContainers[0].self_modulate = Color.BLUE
+				WeaponInformation.TIER.EPIC:
+					weaponContainers[0].self_modulate = Color.PURPLE
+				WeaponInformation.TIER.LEGENDARY:
+					weaponContainers[0].self_modulate = Color.GOLD
+			weaponContainers[1].visible = false
+		2:
+			weaponIcons[0].texture = weapons[0].info.icon
+			weaponIcons[1].texture = weapons[1].info.icon
+			weaponContainers[0].visible = true
+			weaponContainers[1].visible = true
+			match weapons[0].info.tier:
+				WeaponInformation.TIER.COMMON:
+					weaponContainers[0].self_modulate = Color.WHITE
+				WeaponInformation.TIER.RARE:
+					weaponContainers[0].self_modulate = Color.BLUE
+				WeaponInformation.TIER.EPIC:
+					weaponContainers[0].self_modulate = Color.PURPLE
+				WeaponInformation.TIER.LEGENDARY:
+					weaponContainers[0].self_modulate = Color.GOLD
+			match weapons[1].info.tier:
+				WeaponInformation.TIER.COMMON:
+					weaponContainers[1].self_modulate = Color.WHITE
+				WeaponInformation.TIER.RARE:
+					weaponContainers[1].self_modulate = Color.BLUE
+				WeaponInformation.TIER.EPIC:
+					weaponContainers[1].self_modulate = Color.PURPLE
+				WeaponInformation.TIER.LEGENDARY:
+					weaponContainers[1].self_modulate = Color.GOLD
+func updateCoords(pos :Vector2) -> void:
+	coords.text = "%d, %d" % [floor(pos.x),floor(pos.y)]

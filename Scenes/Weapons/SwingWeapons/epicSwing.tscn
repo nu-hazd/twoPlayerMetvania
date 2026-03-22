@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://2drokmkg6vyu"]
+
+[ext_resource type="PackedScene" uid="uid://csw2oap81iptp" path="res://Scenes/Weapons/SwingWeapons/templateSwing.tscn" id="1_taqfw"]
+[ext_resource type="Resource" uid="uid://b7wlgymkmk7a4" path="res://Resources/Weapon/WeaponInformation/Swing/swingEpic.tres" id="2_taqfw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymhfa"]
+radius = 5.6568546
+height = 35.35534
+
+[node name="epicSwing" unique_id=1934276913 instance=ExtResource("1_taqfw")]
+visible = true
+swingSpeed = 0.3
+info = ExtResource("2_taqfw")
+
+[node name="Sprite2D" parent="pivot" parent_id_path=PackedInt32Array(1630742713) index="0" unique_id=886740408]
+region_rect = Rect2(480, 384, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/hitboxes/mid" parent_id_path=PackedInt32Array(1545245511) index="0" unique_id=1532854929]
+position = Vector2(1.9999995, -2.9999995)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_ymhfa")

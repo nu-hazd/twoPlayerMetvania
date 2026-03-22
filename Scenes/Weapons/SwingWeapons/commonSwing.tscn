@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bjvjwoeqb4rxd"]
+
+[ext_resource type="PackedScene" uid="uid://csw2oap81iptp" path="res://Scenes/Weapons/SwingWeapons/templateSwing.tscn" id="1_3cqgk"]
+[ext_resource type="Resource" uid="uid://beuxo7otrw3y2" path="res://Resources/Weapon/WeaponInformation/Swing/swingCommon.tres" id="2_nwq2r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymhfa"]
+radius = 3.0
+height = 26.0
+
+[node name="commonSwing" unique_id=1934276913 instance=ExtResource("1_3cqgk")]
+visible = true
+info = ExtResource("2_nwq2r")
+
+[node name="Sprite2D" parent="pivot" parent_id_path=PackedInt32Array(1630742713) index="0" unique_id=886740408]
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/hitboxes/mid" parent_id_path=PackedInt32Array(1545245511) index="0" unique_id=1532854929]
+position = Vector2(2.727922, -2.727922)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_ymhfa")

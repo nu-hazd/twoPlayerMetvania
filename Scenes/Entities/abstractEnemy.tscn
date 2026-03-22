@@ -160,6 +160,12 @@ collision_layer = 2
 script = ExtResource("2_wc4qq")
 onDeatItemDrops = Dictionary[ExtResource("3_c5ubr"), int]({})
 
+[node name="Sprite2D" parent="." index="0" unique_id=1113159217]
+material = SubResource("ShaderMaterial_mehcv")
+
+[node name="WeaponArmory" parent="." index="2" unique_id=754833403 node_paths=PackedStringArray("user")]
+user = NodePath("..")
+
 [node name="death" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="0" unique_id=537046766]
 script = ExtResource("4_vdeb4")
 metadata/_custom_type_script = "uid://ecp5iyp32a2f"

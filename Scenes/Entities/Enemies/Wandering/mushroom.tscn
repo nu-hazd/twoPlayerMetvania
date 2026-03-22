@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://cvqc8vangqv4d" path="res://Resources/Scripts/itemInfo.gd" id="2_e0nym"]
 [ext_resource type="Resource" uid="uid://mb1cvi51q6mn" path="res://Resources/Items/smallCoin.tres" id="3_lg7bb"]
 [ext_resource type="Resource" uid="uid://bagap54vi457u" path="res://Resources/Items/mediumCoin.tres" id="4_mirua"]
+[ext_resource type="Shader" uid="uid://dvv6jqfise1kv" path="res://Resources/Shaders/hitFlash.gdshader" id="5_lg7bb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mehcv"]
+shader = ExtResource("5_lg7bb")
+shader_parameter/hitFlashColor = Color(0, 1, 0, 1)
+shader_parameter/enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74jwg"]
 size = Vector2(11, 13)
@@ -75,6 +81,7 @@ ExtResource("4_mirua"): 1
 })
 
 [node name="Sprite2D" parent="." index="0" unique_id=1113159217]
+material = SubResource("ShaderMaterial_mehcv")
 hframes = 8
 vframes = 4
 

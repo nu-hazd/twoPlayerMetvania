@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://heygaiay4xb0"]
+
+[ext_resource type="Script" uid="uid://gk0x0xtskixg" path="res://Scripts/Weapon/Projectiles/projectile.gd" id="1_ickhh"]
+
+[node name="AbstractProjectile" type="RigidBody2D" unique_id=1074870888]
+collision_layer = 128
+collision_mask = 16
+sleeping = true
+lock_rotation = true
+script = ExtResource("1_ickhh")
+
+[node name="wallCollision" type="CollisionShape2D" parent="." unique_id=1361984338]
+
+[node name="entityDetector" type="Area2D" parent="." unique_id=222735316]
+collision_layer = 0
+collision_mask = 0
+
+[node name="wallDetector" type="Area2D" parent="." unique_id=1332634618]
+collision_layer = 0
+collision_mask = 16
+
+[node name="lifetime" type="Timer" parent="." unique_id=1031790694]
+one_shot = true
+
+[node name="queueDeletion" type="Timer" parent="." unique_id=2115207530]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="entityDetector" to="." method="_on_entity_detector_body_entered"]
+[connection signal="body_entered" from="wallDetector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]
+[connection signal="timeout" from="queueDeletion" to="." method="_on_queue_deletion_timeout"]

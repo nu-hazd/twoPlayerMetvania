@@ -14,7 +14,7 @@ shader_parameter/hitFlashColor = Color(0, 1, 0, 1)
 shader_parameter/enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74jwg"]
-size = Vector2(11, 13)
+size = Vector2(11, 12)
 
 [sub_resource type="Animation" id="Animation_b7541"]
 length = 0.001
@@ -91,8 +91,7 @@ hframes = 8
 vframes = 4
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1460129409]
-visible = false
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_74jwg")
 
 [node name="idle" parent="StateMachine" parent_id_path=PackedInt32Array(887308918) index="0" unique_id=139185438]
